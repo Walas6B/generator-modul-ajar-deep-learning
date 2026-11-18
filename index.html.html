@@ -1,0 +1,3581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generator Modul Ajar dan LKPD by Nurjanah, S.Pd</title>
+  <style>
+    /* =========================================================================
+       1. VARIABEL DESAIN & RESET DASAR (100% VANILLA CSS MANDIRI TANPA CDN)
+       ========================================================================= */
+    :root {
+      --primary: #1d4ed8;
+      --primary-dark: #1e3a8a;
+      --primary-darker: #172554;
+      --primary-soft: #eff6ff;
+      --primary-border: #bfdbfe;
+      --emerald: #059669;
+      --emerald-dark: #047857;
+      --emerald-soft: #ecfdf5;
+      --emerald-border: #a7f3d0;
+      --amber: #d97706;
+      --amber-soft: #fffbeb;
+      --amber-border: #fde68a;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --danger-border: #fecaca;
+      --bg-app: #f1f5f9;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --border-color: #cbd5e1;
+      --border-soft: #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.1);
+      --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.16);
+      --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-doc: 'Times New Roman', Times, Georgia, serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* =========================================================================
+       2. HEADER & NAVIGASI 5 TAB UTAMA
+       ========================================================================= */
+    .app-header {
+      background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary-dark) 55%, var(--emerald-dark) 100%);
+      color: #ffffff;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-wrap {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo-wrap img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .brand-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .brand-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.25);
+      border: 1px solid rgba(167, 243, 208, 0.45);
+      color: #d1fae5;
+    }
+
+    .brand-subtitle {
+      margin: 3px 0 0 0;
+      font-size: 0.78rem;
+      color: #dbeafe;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #eff6ff;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #34d399;
+      display: inline-block;
+    }
+
+    .nav-bar {
+      background: rgba(15, 23, 42, 0.35);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 6px 16px;
+      display: flex;
+      overflow-x: auto;
+      gap: 6px;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: #dbeafe;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--primary-dark);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* =========================================================================
+       3. LAYOUT UTAMA, KARTU, FORM & TOMBOL
+       ========================================================================= */
+    .main-container {
+      flex: 1;
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 16px 36px 16px;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-highlight {
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 55%, #ecfdf5 100%);
+      border: 1.5px solid var(--primary-border);
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .step-badge.emerald {
+      background: var(--emerald-soft);
+      color: var(--emerald-dark);
+    }
+
+    .card-desc {
+      margin: 4px 0 0 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Grid Sistem Responsif */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .col-span-2 {
+      grid-column: span 2;
+    }
+
+    .col-span-3 {
+      grid-column: span 3;
+    }
+
+    @media (max-width: 900px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .col-span-3 {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .col-span-2, .col-span-3 {
+        grid-column: span 1;
+      }
+    }
+
+    /* Form Controls */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      color: var(--text-main);
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 9px 12px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.14);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      line-height: 1.48;
+    }
+
+    /* Tombol Standar */
+    .btn {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 9px 15px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.08s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-sm {
+      padding: 6px 11px;
+      font-size: 0.76rem;
+      border-radius: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 5px rgba(29, 78, 216, 0.25);
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-emerald {
+      background-color: var(--emerald);
+      color: #ffffff;
+      box-shadow: 0 2px 5px rgba(5, 150, 105, 0.25);
+    }
+    .btn-emerald:hover {
+      background-color: var(--emerald-dark);
+    }
+
+    .btn-amber {
+      background-color: var(--amber);
+      color: #ffffff;
+    }
+    .btn-amber:hover {
+      background-color: #b45309;
+    }
+
+    .btn-white {
+      background-color: #ffffff;
+      color: var(--primary-dark);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .btn-white:hover {
+      background-color: #eff6ff;
+    }
+
+    .btn-secondary {
+      background-color: #f1f5f9;
+      color: #334155;
+      border-color: var(--border-color);
+    }
+    .btn-secondary:hover {
+      background-color: #e2e8f0;
+    }
+
+    .btn-soft-emerald {
+      background-color: var(--emerald-soft);
+      color: var(--emerald-dark);
+      border-color: var(--emerald-border);
+    }
+    .btn-soft-emerald:hover {
+      background-color: #d1fae5;
+    }
+
+    .btn-soft-amber {
+      background-color: var(--amber-soft);
+      color: #92400e;
+      border-color: var(--amber-border);
+    }
+    .btn-soft-amber:hover {
+      background-color: #fef3c7;
+    }
+
+    .btn-soft-danger {
+      background-color: var(--danger-soft);
+      color: var(--danger);
+      border-color: var(--danger-border);
+    }
+    .btn-soft-danger:hover {
+      background-color: #fee2e2;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* =========================================================================
+       4. KARTU INTERAKTIF 8 DIMENSI PROFIL LULUSAN & ITEM DINAMIS
+       ========================================================================= */
+    .dimensi-card {
+      border: 1.5px solid var(--border-soft);
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .dimensi-card:hover {
+      border-color: #93c5fd;
+      background: #ffffff;
+    }
+
+    .dimensi-card.selected {
+      border-color: var(--emerald);
+      background: var(--emerald-soft);
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.12);
+    }
+
+    .dimensi-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid #94a3b8;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #ffffff;
+    }
+
+    .dimensi-card.selected .dimensi-check {
+      border-color: var(--emerald);
+      background: var(--emerald);
+    }
+
+    .dimensi-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .dimensi-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    .pill-badge {
+      display: inline-block;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+
+    .pill-badge.emerald {
+      background: var(--emerald-soft);
+      color: var(--emerald-dark);
+      border-color: var(--emerald-border);
+    }
+
+    .tag-dl {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .tag-dl.berkesadaran { background: #e0f2fe; color: #0369a1; }
+    .tag-dl.bermakna { background: #dcfce7; color: #15803d; }
+    .tag-dl.menggembirakan { background: #fef3c7; color: #b45309; }
+
+    .sub-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .sub-box.blue {
+      background: #f0f7ff;
+      border-color: var(--primary-border);
+    }
+
+    .sub-box-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .toolbar-bar {
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    /* =========================================================================
+       5. KERTAS A4 PRATINJAU & ATURAN CETAK RESMI (@MEDIA PRINT)
+       ========================================================================= */
+    .a4-wrapper {
+      overflow-x: auto;
+      padding: 6px 0 18px 0;
+    }
+
+    .a4-paper {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      color: #000000;
+      font-family: var(--font-doc);
+      font-size: 11pt;
+      line-height: 1.42;
+      box-shadow: var(--shadow-lg);
+      margin: 0 auto;
+      padding: 14mm 16mm;
+    }
+
+    .kop-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-bottom: 3.5pt double #000000;
+      margin-bottom: 12px;
+    }
+
+    .kop-table td {
+      border: none !important;
+      padding: 0 4px 6px 4px;
+      vertical-align: middle;
+    }
+
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      font-size: 10.5pt;
+    }
+
+    .doc-table th, .doc-table td {
+      border: 1px solid #000000;
+      padding: 5px 8px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .doc-table th {
+      background-color: #f1f5f9;
+      font-weight: bold;
+    }
+
+    .ttd-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+    }
+
+    .ttd-table td {
+      border: none !important;
+      width: 50%;
+      vertical-align: top;
+      text-align: center;
+      padding: 4px 12px;
+    }
+
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 2px dashed #94a3b8;
+    }
+
+    .live-kop-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      font-family: var(--font-doc);
+      color: #000000;
+    }
+
+    .logo-preview-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-thumb {
+      width: 74px;
+      height: 74px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .logo-thumb img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* =========================================================================
+       6. TOAST NOTIFICATION & MODAL KONFIRMASI (TANPA ALERT/CONFIRM)
+       ========================================================================= */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 360px;
+      pointer-events: none;
+    }
+
+    .toast-item {
+      pointer-events: auto;
+      background: #065f46;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+      font-size: 0.83rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 5px solid #34d399;
+      animation: slideInToast 0.2s ease-out;
+    }
+
+    .toast-item.info {
+      background: #1e3a8a;
+      border-left-color: #60a5fa;
+    }
+
+    .toast-item.warn {
+      background: #92400e;
+      border-left-color: #fbbf24;
+    }
+
+    @keyframes slideInToast {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 16px;
+      max-width: 440px;
+      width: 100%;
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-soft);
+    }
+
+    .modal-title {
+      margin: 0 0 8px 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .modal-msg {
+      margin: 0 0 18px 0;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .app-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border-soft);
+      padding: 14px 16px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================================================================
+       7. MEDIA PRINT (CETAK PDF / PRINTER LANGSUNG)
+       ========================================================================= */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 14mm;
+      }
+      body {
+        background: #ffffff !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .main-container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .tab-panel {
+        display: none !important;
+      }
+      #tab-cetak {
+        display: block !important;
+      }
+      .a4-wrapper {
+        overflow: visible !important;
+        padding: 0 !important;
+      }
+      .a4-paper {
+        width: 100% !important;
+        min-height: auto !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .page-break {
+        border-top: none !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+      tr, .avoid-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Container Notifikasi Toast -->
+  <div id="toastContainer" class="toast-container no-print"></div>
+
+  <!-- Modal Konfirmasi Kustom (Pengganti window.confirm) -->
+  <div id="confirmModal" class="modal-backdrop no-print" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h3 id="confirmTitle" class="modal-title">Konfirmasi Tindakan</h3>
+      <p id="confirmMessage" class="modal-msg">Apakah Anda yakin ingin melanjutkan?</p>
+      <div class="btn-group" style="justify-content: flex-end;">
+        <button type="button" id="confirmCancelBtn" class="btn btn-secondary">Batal</button>
+        <button type="button" id="confirmOkBtn" class="btn btn-primary">Ya, Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Utama Aplikasi -->
+  <header class="app-header no-print">
+    <div class="header-inner">
+      <div class="brand-box">
+        <div class="brand-logo-wrap">
+          <img id="headerLogoImg" alt="Logo Kota Bekasi" />
+        </div>
+        <div>
+          <div class="brand-title-row">
+            <h1 class="brand-title">Generator Modul Ajar dan LKPD by Nurjanah, S.Pd</h1>
+            <span class="brand-pill">100% Offline • Kota Bekasi</span>
+          </div>
+          <p class="brand-subtitle">Perangkat Ajar SD Kurikulum Merdeka • Pembelajaran Mendalam &amp; 8 Dimensi Profil Lulusan</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <span id="saveStatusBadge" class="status-badge">
+          <span class="status-dot"></span>
+          <span>Tersimpan Otomatis</span>
+        </span>
+        <button type="button" id="btnQuickPreview" class="btn btn-white btn-sm">
+          Pratinjau &amp; Cetak A4
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigasi 5 Tab -->
+    <nav class="nav-bar" aria-label="Menu Utama">
+      <div class="nav-inner" id="mainTabNav">
+        <button type="button" class="tab-btn active" data-tab="tab-modul">1. Penyusun Modul Ajar</button>
+        <button type="button" class="tab-btn" data-tab="tab-lkpd">2. Penyusun LKPD Siswa</button>
+        <button type="button" class="tab-btn" data-tab="tab-evaluasi">3. Soal Evaluasi &amp; Kunci</button>
+        <button type="button" class="tab-btn" data-tab="tab-cetak">4. Pratinjau Cetak &amp; Ekspor</button>
+        <button type="button" class="tab-btn" data-tab="tab-sekolah">5. Identitas Sekolah, Kop &amp; Arsip</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Konten Utama 5 Tab -->
+  <main class="main-container">
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: PENYUSUN MODUL AJAR                                          -->
+    <!-- =================================================================== -->
+    <section id="tab-modul" class="tab-panel active">
+
+      <!-- Panel Bantu Susun Otomatis (100% Offline) -->
+      <div class="card card-highlight">
+        <div class="card-header" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+          <div>
+            <span class="pill-badge">Bantu Susun Otomatis (100% Offline Tanpa Internet)</span>
+            <h2 class="card-title" style="margin-top: 8px;">Generator Perangkat Ajar &amp; Sintaks Pembelajaran Mendalam</h2>
+            <p class="card-desc">
+              Pilih <strong>Mata Pelajaran</strong>, isi <strong>Topik/Materi Pokok</strong>, dan pilih <strong>Model Pembelajaran</strong> di bawah, lalu klik tombol susun otomatis.
+            </p>
+          </div>
+          <div class="btn-group">
+            <button type="button" id="btnAutoGenerateAll" class="btn btn-primary">
+              Susun Otomatis Modul, LKPD &amp; Soal
+            </button>
+            <button type="button" id="btnInsertSyntaxOnly" class="btn btn-emerald">
+              Sisipkan Kerangka Sintaks Model Saja
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bagian A: Informasi Umum -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title"><span class="step-badge">A</span> Informasi Umum Modul Ajar</h2>
+          <button type="button" id="btnJumpSekolah" class="btn btn-secondary btn-sm">Atur Identitas Sekolah &amp; Kelas &rarr;</button>
+        </div>
+
+        <div class="grid-3">
+          <div class="form-group">
+            <label class="form-label" for="mapelSelect">Mata Pelajaran</label>
+            <select id="mapelSelect" class="form-select">
+              <option value="Ilmu Pengetahuan Alam dan Sosial (IPAS)">Ilmu Pengetahuan Alam dan Sosial (IPAS)</option>
+              <option value="Matematika">Matematika</option>
+              <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+              <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
+              <option value="Seni Rupa">Seni Rupa</option>
+              <option value="Seni Musik">Seni Musik</option>
+              <option value="Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK)">Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK)</option>
+              <option value="Bahasa Inggris">Bahasa Inggris</option>
+              <option value="Bahasa Sunda (Muatan Lokal Kota Bekasi)">Bahasa Sunda (Muatan Lokal Kota Bekasi)</option>
+              <option value="Pendidikan Agama dan Budi Pekerti">Pendidikan Agama dan Budi Pekerti</option>
+              <option value="__CUSTOM__">+ Ketik Mata Pelajaran Lainnya...</option>
+            </select>
+            <input type="text" id="mapelCustomInput" class="form-input hidden" placeholder="Ketik nama mata pelajaran..." style="margin-top: 6px;" />
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="form-label" for="modulTopik">Topik / Materi Pokok</label>
+            <input type="text" id="modulTopik" class="form-input" placeholder="Contoh: Transformasi Energi di Sekitar Kita" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modulModel">Model Pembelajaran</label>
+            <select id="modulModel" class="form-select">
+              <option value="Problem Based Learning (PBL)">Problem Based Learning (PBL)</option>
+              <option value="Project Based Learning (PjBL)">Project Based Learning (PjBL)</option>
+              <option value="Discovery Learning">Discovery Learning</option>
+              <option value="Inquiry Learning">Inquiry Learning</option>
+              <option value="Cooperative Learning">Cooperative Learning</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modulAlokasi">Alokasi Waktu</label>
+            <input type="text" id="modulAlokasi" class="form-input" placeholder="Contoh: 2 JP (2 x 35 Menit)" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modulPertemuan">Pertemuan Ke-</label>
+            <input type="text" id="modulPertemuan" class="form-input" placeholder="Contoh: Pertemuan ke-1" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modulModa">Moda Pembelajaran</label>
+            <select id="modulModa" class="form-select">
+              <option value="Tatap Muka (Luring)">Tatap Muka (Luring)</option>
+              <option value="Blended Learning (Campuran)">Blended Learning (Campuran)</option>
+              <option value="Daring (Online)">Daring (Online)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modulJumlahSiswa">Jumlah Peserta Didik</label>
+            <input type="text" id="modulJumlahSiswa" class="form-input" placeholder="Contoh: 28 Peserta Didik" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modulTarget">Target Peserta Didik</label>
+            <input type="text" id="modulTarget" class="form-input" placeholder="Contoh: Peserta Didik Reguler / Tipikal" />
+          </div>
+
+          <div class="form-group col-span-3">
+            <label class="form-label" for="modulSarpras">Sarana &amp; Prasarana</label>
+            <input type="text" id="modulSarpras" class="form-input" placeholder="Contoh: Buku Siswa, LKPD, Kertas Spiral, Lilin, Korek Api, Proyektor LCD" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Bagian B: 8 Dimensi Profil Lulusan -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title"><span class="step-badge emerald">B</span> 8 Dimensi Profil Lulusan (Pembelajaran Mendalam)</h2>
+            <p class="card-desc">Klik kartu dimensi di bawah untuk memilih dimensi profil lulusan yang dikembangkan dalam modul ini.</p>
+          </div>
+          <div class="btn-group">
+            <span id="dimensiCounterBadge" class="pill-badge emerald">0 dari 8 Dimensi Terpilih</span>
+            <button type="button" id="btnSelectAllDimensi" class="btn btn-soft-emerald btn-sm">Pilih Semua</button>
+            <button type="button" id="btnResetDimensi" class="btn btn-secondary btn-sm">Reset Pilihan</button>
+          </div>
+        </div>
+
+        <div id="dimensiGrid" class="grid-4" style="margin-bottom: 14px;"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="modulCatatanDimensi">Catatan Keterkaitan Dimensi dalam Pembelajaran</label>
+          <textarea id="modulCatatanDimensi" class="form-textarea" rows="2" placeholder="Jelaskan bagaimana dimensi profil lulusan tersebut diwujudkan dalam aktivitas siswa..."></textarea>
+        </div>
+      </div>
+
+      <!-- Bagian C: Komponen Inti & Langkah Kegiatan -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title"><span class="step-badge">C</span> Komponen Inti &amp; Langkah Pembelajaran</h2>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="modulElemen">Elemen</label>
+            <input type="text" id="modulElemen" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modulPemahaman">Pemahaman Bermakna</label>
+            <input type="text" id="modulPemahaman" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modulCP">Capaian Pembelajaran (CP)</label>
+            <textarea id="modulCP" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modulTP">Tujuan Pembelajaran (TP)</label>
+            <textarea id="modulTP" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group col-span-2">
+            <label class="form-label" for="modulPemantik">Pertanyaan Pemantik</label>
+            <textarea id="modulPemantik" class="form-textarea" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px;">
+          <strong style="font-size: 0.9rem;">Langkah-Langkah Kegiatan Pembelajaran</strong>
+          <div class="btn-group">
+            <span class="tag-dl berkesadaran">[Berkesadaran]</span>
+            <span class="tag-dl bermakna">[Bermakna]</span>
+            <span class="tag-dl menggembirakan">[Menggembirakan]</span>
+          </div>
+        </div>
+
+        <div class="sub-box">
+          <div class="sub-box-header">
+            <label class="form-label" for="modulPendahuluan">1. Kegiatan Pendahuluan</label>
+            <input type="text" id="modulWaktuPendahuluan" class="form-input" style="max-width: 180px; padding: 5px 10px; font-size: 0.78rem;" placeholder="Misal: 10 Menit" />
+          </div>
+          <textarea id="modulPendahuluan" class="form-textarea" rows="4"></textarea>
+        </div>
+
+        <div class="sub-box blue">
+          <div class="sub-box-header">
+            <label class="form-label" for="modulInti" style="color: var(--primary-dark);">2. Kegiatan Inti (Sintaks Model Pembelajaran)</label>
+            <input type="text" id="modulWaktuInti" class="form-input" style="max-width: 180px; padding: 5px 10px; font-size: 0.78rem;" placeholder="Misal: 50 Menit" />
+          </div>
+          <textarea id="modulInti" class="form-textarea" rows="8"></textarea>
+        </div>
+
+        <div class="sub-box">
+          <div class="sub-box-header">
+            <label class="form-label" for="modulPenutup">3. Kegiatan Penutup</label>
+            <input type="text" id="modulWaktuPenutup" class="form-input" style="max-width: 180px; padding: 5px 10px; font-size: 0.78rem;" placeholder="Misal: 10 Menit" />
+          </div>
+          <textarea id="modulPenutup" class="form-textarea" rows="4"></textarea>
+        </div>
+
+        <div class="grid-3" style="margin-top: 14px;">
+          <div class="form-group">
+            <label class="form-label" for="modulAsesmenDiagnostik">Asesmen Diagnostik (Awal)</label>
+            <textarea id="modulAsesmenDiagnostik" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modulAsesmenFormatif">Asesmen Formatif (Proses)</label>
+            <textarea id="modulAsesmenFormatif" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modulAsesmenSumatif">Asesmen Sumatif (Akhir)</label>
+            <textarea id="modulAsesmenSumatif" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group col-span-2">
+            <label class="form-label" for="modulPengayaan">Pengayaan &amp; Remedial</label>
+            <textarea id="modulPengayaan" class="form-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modulRefleksi">Refleksi Guru &amp; Peserta Didik</label>
+            <textarea id="modulRefleksi" class="form-textarea" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bagian D: Rubrik KKTP Dinamis -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title"><span class="step-badge emerald">D</span> Rubrik Kriteria Ketercapaian Tujuan Pembelajaran (KKTP)</h2>
+            <p class="card-desc">Skala 4 tingkat ketercapaian (Perlu Bimbingan, Cukup, Baik, Sangat Baik).</p>
+          </div>
+          <button type="button" id="btnAddKktp" class="btn btn-primary btn-sm">+ Tambah Kriteria KKTP</button>
+        </div>
+        <div id="kktpListContainer"></div>
+      </div>
+
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: PENYUSUN LKPD SISWA                                          -->
+    <!-- =================================================================== -->
+    <section id="tab-lkpd" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Penyusun Lembar Kerja Peserta Didik (LKPD)</h2>
+            <p class="card-desc">Otomatis menggunakan Kop Surat Kota Bekasi, Mata Pelajaran, Topik, dan Tujuan Pembelajaran dari Modul Ajar.</p>
+          </div>
+          <label style="display: inline-flex; align-items: center; gap: 8px; background: #f8fafc; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-soft); cursor: pointer;">
+            <input type="checkbox" id="lkpdIncludePrint" style="width: 16px; height: 16px;" />
+            <span style="font-size: 0.8rem; font-weight: 700;">Sertakan LKPD saat Cetak / Ekspor</span>
+          </label>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="lkpdJudul">Judul LKPD</label>
+            <input type="text" id="lkpdJudul" class="form-input" placeholder="Contoh: LKPD 1 - Percobaan Kincir Kertas Spiral" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lkpdTipe">Model Pengerjaan</label>
+            <select id="lkpdTipe" class="form-select">
+              <option value="Kelompok (Nama Anggota & Ketua)">Kelompok (Nama Anggota &amp; Ketua)</option>
+              <option value="Individu (Nama Siswa & No. Absen)">Individu (Nama Siswa &amp; No. Absen)</option>
+            </select>
+          </div>
+          <div class="form-group col-span-2">
+            <label class="form-label" for="lkpdPetunjuk">Petunjuk Pengerjaan Siswa</label>
+            <textarea id="lkpdPetunjuk" class="form-textarea" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="toolbar-bar">
+          <strong style="font-size: 0.84rem;">Tambah Blok Aktivitas LKPD:</strong>
+          <div class="btn-group">
+            <button type="button" id="btnAddLkpdUraian" class="btn btn-primary btn-sm">+ Pertanyaan Uraian / Pengamatan</button>
+            <button type="button" id="btnAddLkpdTabel" class="btn btn-emerald btn-sm">+ Tabel Pengamatan / Klasifikasi</button>
+            <button type="button" id="btnAddLkpdGambar" class="btn btn-amber btn-sm">+ Kotak Gambar / Sketsa / Peta Konsep</button>
+          </div>
+        </div>
+
+        <div id="lkpdBlocksContainer"></div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: SOAL EVALUASI & KUNCI JAWABAN                                -->
+    <!-- =================================================================== -->
+    <section id="tab-evaluasi" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Soal Evaluasi Sumatif &amp; Kunci Jawaban</h2>
+            <p class="card-desc">Susun butir soal Pilihan Ganda (A–D) dan Isian/Uraian lengkap dengan bobot skor dan kunci jawaban.</p>
+          </div>
+          <div class="btn-group">
+            <span id="totalSkorBadge" class="pill-badge emerald">Total Skor Maksimal: 100 Poin</span>
+            <label style="display: inline-flex; align-items: center; gap: 8px; background: #f8fafc; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-soft); cursor: pointer;">
+              <input type="checkbox" id="evalIncludePrint" style="width: 16px; height: 16px;" />
+              <span style="font-size: 0.8rem; font-weight: 700;">Sertakan Lembar Evaluasi saat Cetak/Ekspor</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="evalJudul">Judul Lembar Evaluasi</label>
+            <input type="text" id="evalJudul" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="evalPetunjuk">Petunjuk Pengerjaan Soal</label>
+            <input type="text" id="evalPetunjuk" class="form-input" />
+          </div>
+        </div>
+
+        <div class="toolbar-bar">
+          <strong style="font-size: 0.84rem;">Tambah Butir Soal:</strong>
+          <div class="btn-group">
+            <button type="button" id="btnAddSoalPG" class="btn btn-primary btn-sm">+ Soal Pilihan Ganda (A–D)</button>
+            <button type="button" id="btnAddSoalUraian" class="btn btn-emerald btn-sm">+ Soal Isian / Uraian</button>
+          </div>
+        </div>
+
+        <div id="soalListContainer"></div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: PRATINJAU CETAK A4 & EKSPOR WORD (.DOC)                      -->
+    <!-- =================================================================== -->
+    <section id="tab-cetak" class="tab-panel">
+      <div class="card no-print">
+        <div class="card-header" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+          <div>
+            <h2 class="card-title">Pratinjau Dokumen Resmi A4 (Modul Ajar, LKPD &amp; Evaluasi)</h2>
+            <p class="card-desc">Lengkap dengan Kop Surat Pemerintah Kota Bekasi, Dual Logo SD, dan Tanda Tangan Kepala Sekolah &amp; Guru Kelas.</p>
+          </div>
+          <div class="btn-group">
+            <button type="button" id="btnEditKopFromPrint" class="btn btn-soft-amber">Edit Kop Surat &amp; Logo</button>
+            <button type="button" id="btnExportWord" class="btn btn-primary">Unduh Word (.doc)</button>
+            <button type="button" id="btnPrintPdf" class="btn btn-emerald">Cetak / Simpan PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="a4-wrapper">
+        <div id="printDocumentArea" class="a4-paper"></div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 5: IDENTITAS SEKOLAH, KOP SURAT & ARSIP                         -->
+    <!-- =================================================================== -->
+    <section id="tab-sekolah" class="tab-panel">
+
+      <!-- Kartu 1: Kop Surat Otomatis Pemerintah Kota Bekasi & Dual Logo -->
+      <div id="kopEditorSection" class="card card-highlight">
+        <div class="card-header">
+          <div>
+            <span class="pill-badge">Kop Surat Resmi Pemerintah Kota Bekasi</span>
+            <h2 class="card-title" style="margin-top: 6px;">Pengaturan Kop Surat &amp; Dual Logo SD</h2>
+          </div>
+          <button type="button" id="btnResetKopBekasi" class="btn btn-secondary btn-sm">Reset Standar Kota Bekasi</button>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Pratinjau Langsung Kop Surat (Live Preview)</span>
+            <span style="font-size: 0.74rem; font-weight: 700; color: var(--emerald-dark);">Otomatis tampil di PDF &amp; Word (.doc)</span>
+          </div>
+          <div class="live-kop-box">
+            <div id="liveKopPreviewBox" style="min-width: 520px;"></div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="kopBaris1">Baris 1 (Instansi Pemerintah)</label>
+            <input type="text" id="kopBaris1" class="form-input" style="font-weight: 700;" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="kopBaris2">Baris 2 (Nama Dinas)</label>
+            <input type="text" id="kopBaris2" class="form-input" style="font-weight: 700;" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahNamaKop">Baris 3 (Nama Sekolah — Terhubung Otomatis)</label>
+            <input type="text" id="sekolahNamaKop" class="form-input" style="font-weight: 700; background: #eff6ff; border-color: #93c5fd;" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="kopKotaTitimangsa">Kota Titimangsa Tanda Tangan</label>
+            <input type="text" id="kopKotaTitimangsa" class="form-input" />
+          </div>
+          <div class="form-group col-span-2">
+            <label class="form-label" for="kopAlamat">Baris 4 (Alamat Lengkap Sekolah, Kecamatan, Kode Pos &amp; Email)</label>
+            <input type="text" id="kopAlamat" class="form-input" />
+          </div>
+        </div>
+
+        <!-- Pengaturan Logo Kiri & Logo Kanan -->
+        <div class="grid-2">
+          <!-- Logo Kiri -->
+          <div class="sub-box" style="margin-bottom: 0;">
+            <div class="sub-box-header">
+              <strong style="font-size: 0.85rem;">Logo Kiri (Lambang Kota Bekasi)</strong>
+              <span class="pill-badge emerald" style="font-size: 0.7rem;">Bawaan Aktif</span>
+            </div>
+            <div class="logo-preview-wrap">
+              <div class="logo-thumb">
+                <img id="previewLogoKiri" alt="Logo Kota Bekasi" />
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <label class="btn btn-primary btn-sm" style="cursor: pointer;">
+                  Unggah Logo Kota Bekasi (PNG/JPG)
+                  <input type="file" id="inputUploadLogoKiri" accept="image/png,image/jpeg,image/webp" class="hidden" />
+                </label>
+                <button type="button" id="btnResetLogoKiri" class="btn btn-secondary btn-sm">Reset ke Logo Kota Bekasi Bawaan</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logo Kanan -->
+          <div class="sub-box" style="margin-bottom: 0;">
+            <div class="sub-box-header">
+              <strong style="font-size: 0.85rem;">Logo Kanan (Logo SD / Tut Wuri Handayani)</strong>
+              <span class="pill-badge" style="font-size: 0.7rem;">2 Logo / 1 Logo</span>
+            </div>
+            <div class="logo-preview-wrap">
+              <div class="logo-thumb">
+                <img id="previewLogoKanan" alt="Logo SD" />
+                <span id="noLogoKananLabel" class="hidden" style="font-size: 0.7rem; color: #64748b; text-align: center;">1 Logo Kiri Saja</span>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <select id="logoModeSelect" class="form-select" style="padding: 6px 10px; font-size: 0.78rem; font-weight: 700;">
+                  <option value="dual">2 Logo (Logo Kiri &amp; Logo Kanan)</option>
+                  <option value="single">1 Logo Kiri Saja (Tanpa Logo Kanan)</option>
+                </select>
+                <div class="btn-group">
+                  <label id="labelUploadLogoKanan" class="btn btn-emerald btn-sm" style="cursor: pointer; flex: 1;">
+                    Unggah Logo SD
+                    <input type="file" id="inputUploadLogoKanan" accept="image/png,image/jpeg,image/webp" class="hidden" />
+                  </label>
+                  <button type="button" id="btnResetLogoKanan" class="btn btn-secondary btn-sm">Reset Bawaan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kartu 2: Identitas Satuan Pendidikan, Kepala Sekolah & Guru Penyusun -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Identitas Satuan Pendidikan, Kepala Sekolah &amp; Guru Penyusun</h2>
+        </div>
+
+        <div class="grid-3">
+          <div class="form-group">
+            <label class="form-label" for="sekolahNama">Nama Sekolah</label>
+            <input type="text" id="sekolahNama" class="form-input" style="font-weight: 700;" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahNpsn">NPSN</label>
+            <input type="text" id="sekolahNpsn" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahKecamatan">Kecamatan / Wilayah</label>
+            <input type="text" id="sekolahKecamatan" class="form-input" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sekolahKepsek">Nama Kepala Sekolah</label>
+            <input type="text" id="sekolahKepsek" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahNipKepsek">NIP Kepala Sekolah</label>
+            <input type="text" id="sekolahNipKepsek" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahTanggal">Tanggal Dokumen / Tanda Tangan</label>
+            <div style="display: flex; gap: 6px;">
+              <input type="text" id="sekolahTanggal" class="form-input" />
+              <button type="button" id="btnSetTodayDate" class="btn btn-secondary btn-sm" style="white-space: nowrap;">Hari Ini</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sekolahGuru">Nama Guru Kelas / Penyusun</label>
+            <input type="text" id="sekolahGuru" class="form-input" style="font-weight: 700;" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahNipGuru">NIP / NUPTK Guru</label>
+            <input type="text" id="sekolahNipGuru" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahKelasFase">Kelas &amp; Fase</label>
+            <select id="sekolahKelasFase" class="form-select">
+              <option value="Kelas I (Satu) / Fase A">Kelas I (Satu) / Fase A</option>
+              <option value="Kelas II (Dua) / Fase A">Kelas II (Dua) / Fase A</option>
+              <option value="Kelas III (Tiga) / Fase B">Kelas III (Tiga) / Fase B</option>
+              <option value="Kelas IV (Empat) / Fase B">Kelas IV (Empat) / Fase B</option>
+              <option value="Kelas V (Lima) / Fase C">Kelas V (Lima) / Fase C</option>
+              <option value="Kelas VI (Enam) / Fase C">Kelas VI (Enam) / Fase C</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sekolahSemester">Semester</label>
+            <select id="sekolahSemester" class="form-select">
+              <option value="1 (Ganjil)">1 (Ganjil)</option>
+              <option value="2 (Genap)">2 (Genap)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sekolahTahunAjaran">Tahun Ajaran</label>
+            <input type="text" id="sekolahTahunAjaran" class="form-input" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Kartu 3: Manajemen Arsip Lokal & Cadangan JSON -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Arsip Perangkat Ajar &amp; Cadangan Data (Backup / Restore)</h2>
+            <p class="card-desc">Simpan modul ke arsip browser atau ekspor file JSON ke Google Drive / flashdisk.</p>
+          </div>
+          <div class="btn-group">
+            <button type="button" id="btnClearForm" class="btn btn-soft-danger btn-sm">Kosongkan Form (Modul Baru)</button>
+            <button type="button" id="btnLoadSampleData" class="btn btn-soft-amber btn-sm">Muat Data Contoh IPAS Kelas 4</button>
+            <button type="button" id="btnSaveArchive" class="btn btn-primary btn-sm">+ Simpan ke Arsip Lokal</button>
+            <button type="button" id="btnBackupJson" class="btn btn-emerald btn-sm">Backup JSON</button>
+            <label class="btn btn-secondary btn-sm" style="cursor: pointer;">
+              Restore JSON
+              <input type="file" id="inputRestoreJson" accept=".json,application/json" class="hidden" />
+            </label>
+          </div>
+        </div>
+
+        <div id="archiveListContainer" class="grid-2"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer UI (Tersembunyi saat Cetak) -->
+  <footer class="app-footer no-print">
+    <strong>Generator Modul Ajar dan LKPD by Nurjanah, S.Pd</strong> &bull; Perangkat Ajar SD Kurikulum Merdeka &amp; Pembelajaran Mendalam (8 Dimensi Profil Lulusan)
+  </footer>
+
+  <script>
+    /* =========================================================================
+       GENERATOR MODUL AJAR DAN LKPD BY NURJANAH, S.PD
+       100% OFFLINE VANILLA JAVASCRIPT (KOMPATIBEL FILE:// & ONLINE)
+       ========================================================================= */
+    (function () {
+      'use strict';
+
+      var STORAGE_KEY = 'modul_ajar_nurjanah_bekasi_offline_v1';
+
+      /* -----------------------------------------------------------------------
+         1. PENYIMPANAN AMAN (TRY-CATCH LOCALSTORAGE + IN-MEMORY FALLBACK)
+         ----------------------------------------------------------------------- */
+      var memoryStorageFallback = null;
+
+      function safeReadStorage(key) {
+        try {
+          if (window.localStorage) {
+            return window.localStorage.getItem(key);
+          }
+        } catch (err) {
+          /* Abaikan jika browser memblokir localStorage pada protokol file:// */
+        }
+        return memoryStorageFallback;
+      }
+
+      function safeWriteStorage(key, value) {
+        memoryStorageFallback = value;
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem(key, value);
+          }
+        } catch (err) {
+          /* Tetap berjalan menggunakan memoryStorageFallback tanpa error */
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+         2. GENERATOR DUAL LOGO BAWAAN VIA HTML5 CANVAS (PNG BASE64)
+         ----------------------------------------------------------------------- */
+      function createBekasiLogoDataUrl() {
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = 200;
+          canvas.height = 200;
+          var ctx = canvas.getContext('2d');
+          if (!ctx) return '';
+
+          ctx.clearRect(0, 0, 200, 200);
+
+          // Bentuk Perisai Kota Bekasi
+          ctx.beginPath();
+          ctx.moveTo(30, 24);
+          ctx.lineTo(170, 24);
+          ctx.lineTo(170, 108);
+          ctx.quadraticCurveTo(170, 158, 100, 184);
+          ctx.quadraticCurveTo(30, 158, 30, 108);
+          ctx.closePath();
+
+          // Gradasi Hijau & Biru Patriot
+          var grad = ctx.createLinearGradient(0, 24, 0, 184);
+          grad.addColorStop(0, '#047857');
+          grad.addColorStop(0.55, '#059669');
+          grad.addColorStop(0.56, '#1d4ed8');
+          grad.addColorStop(1, '#1e3a8a');
+          ctx.fillStyle = grad;
+          ctx.fill();
+
+          // Bingkai Emas Perisai
+          ctx.lineWidth = 6;
+          ctx.strokeStyle = '#f59e0b';
+          ctx.stroke();
+
+          // Bintang Emas di Atas
+          drawStar(ctx, 100, 48, 5, 14, 6, '#fbbf24');
+
+          // Tugu Bambu Runcing (5 ruas) di Tengah
+          ctx.fillStyle = '#fef08a';
+          ctx.strokeStyle = '#92400e';
+          ctx.lineWidth = 1.5;
+          var spears = [
+            { x: 84, top: 76, h: 52 },
+            { x: 92, top: 68, h: 60 },
+            { x: 100, top: 62, h: 66 },
+            { x: 108, top: 68, h: 60 },
+            { x: 116, top: 76, h: 52 }
+          ];
+          for (var i = 0; i < spears.length; i++) {
+            var s = spears[i];
+            ctx.beginPath();
+            ctx.moveTo(s.x - 3, s.top + 8);
+            ctx.lineTo(s.x, s.top);
+            ctx.lineTo(s.x + 3, s.top + 8);
+            ctx.lineTo(s.x + 3, s.top + s.h);
+            ctx.lineTo(s.x - 3, s.top + s.h);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+          }
+
+          // Gelombang Air Sungai Bekasi (2 garis putih)
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(46, 134);
+          ctx.quadraticCurveTo(73, 126, 100, 134);
+          ctx.quadraticCurveTo(127, 142, 154, 134);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(52, 144);
+          ctx.quadraticCurveTo(76, 136, 100, 144);
+          ctx.quadraticCurveTo(124, 152, 148, 144);
+          ctx.stroke();
+
+          // Pita Bawah Bertuliskan KOTA BEKASI
+          ctx.fillStyle = '#ffffff';
+          ctx.strokeStyle = '#b45309';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.roundRect ? ctx.roundRect(38, 153, 124, 22, 6) : ctx.rect(38, 153, 124, 22);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = '#0f172a';
+          ctx.font = 'bold 13px Arial, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('KOTA BEKASI', 100, 165);
+
+          return canvas.toDataURL('image/png');
+        } catch (e) {
+          return '';
+        }
+      }
+
+      function createSdLogoDataUrl() {
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = 200;
+          canvas.height = 200;
+          var ctx = canvas.getContext('2d');
+          if (!ctx) return '';
+
+          ctx.clearRect(0, 0, 200, 200);
+
+          // Segilima Biru Tut Wuri Handayani / Sekolah Dasar
+          ctx.beginPath();
+          ctx.moveTo(100, 16);
+          ctx.lineTo(182, 76);
+          ctx.lineTo(150, 178);
+          ctx.lineTo(50, 178);
+          ctx.lineTo(18, 76);
+          ctx.closePath();
+
+          var grad = ctx.createLinearGradient(0, 16, 0, 178);
+          grad.addColorStop(0, '#2563eb');
+          grad.addColorStop(1, '#1e3a8a');
+          ctx.fillStyle = grad;
+          ctx.fill();
+
+          ctx.lineWidth = 6;
+          ctx.strokeStyle = '#fbbf24';
+          ctx.stroke();
+
+          // Obor / Api Ilmu di Atas Buku
+          ctx.fillStyle = '#fbbf24';
+          ctx.beginPath();
+          ctx.moveTo(100, 34);
+          ctx.quadraticCurveTo(116, 54, 100, 74);
+          ctx.quadraticCurveTo(84, 54, 100, 34);
+          ctx.fill();
+
+          ctx.fillStyle = '#fef08a';
+          ctx.beginPath();
+          ctx.moveTo(100, 44);
+          ctx.quadraticCurveTo(109, 56, 100, 68);
+          ctx.quadraticCurveTo(91, 56, 100, 44);
+          ctx.fill();
+
+          // Buku Terbuka Putih di Tengah
+          ctx.fillStyle = '#ffffff';
+          ctx.strokeStyle = '#1e3a8a';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(54, 82);
+          ctx.quadraticCurveTo(78, 76, 100, 86);
+          ctx.quadraticCurveTo(122, 76, 146, 82);
+          ctx.lineTo(146, 122);
+          ctx.quadraticCurveTo(122, 114, 100, 124);
+          ctx.quadraticCurveTo(78, 114, 54, 122);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+
+          // Garis Tengah Buku
+          ctx.beginPath();
+          ctx.moveTo(100, 86);
+          ctx.lineTo(100, 124);
+          ctx.stroke();
+
+          // Tulisan SD Tegas di Bawah Buku
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 28px Arial, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('SD', 100, 148);
+
+          return canvas.toDataURL('image/png');
+        } catch (e) {
+          return '';
+        }
+      }
+
+      function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius, color) {
+        var rot = (Math.PI / 2) * 3;
+        var x = cx;
+        var y = cy;
+        var step = Math.PI / spikes;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - outerRadius);
+        for (var i = 0; i < spikes; i++) {
+          x = cx + Math.cos(rot) * outerRadius;
+          y = cy + Math.sin(rot) * outerRadius;
+          ctx.lineTo(x, y);
+          rot += step;
+
+          x = cx + Math.cos(rot) * innerRadius;
+          y = cy + Math.sin(rot) * innerRadius;
+          ctx.lineTo(x, y);
+          rot += step;
+        }
+        ctx.lineTo(cx, cy - outerRadius);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+
+      var DEFAULT_LOGO_BEKASI = createBekasiLogoDataUrl();
+      var DEFAULT_LOGO_SD = createSdLogoDataUrl();
+
+      /* -----------------------------------------------------------------------
+         3. DAFTAR 8 DIMENSI PROFIL LULUSAN & TANGGAL BAHASA INDONESIA
+         ----------------------------------------------------------------------- */
+      var DELAPAN_DIMENSI = [
+        {
+          id: 'Keimanan dan Ketakwaan terhadap Tuhan YME',
+          title: 'Keimanan dan Ketakwaan terhadap Tuhan YME',
+          desc: 'Berakhlak mulia, bersyukur atas ciptaan Tuhan, dan berdoa sebelum/sesudah belajar.'
+        },
+        {
+          id: 'Kewargaan',
+          title: 'Kewargaan',
+          desc: 'Cinta tanah air, peduli lingkungan sekitar, dan menaati aturan bersama.'
+        },
+        {
+          id: 'Penalaran Kritis',
+          title: 'Penalaran Kritis',
+          desc: 'Menganalisis informasi, bertanya, dan menarik kesimpulan berbasis bukti.'
+        },
+        {
+          id: 'Kreativitas',
+          title: 'Kreativitas',
+          desc: 'Menghasilkan gagasan orisinal, karya nyata, dan solusi alternatif.'
+        },
+        {
+          id: 'Kolaborasi',
+          title: 'Kolaborasi',
+          desc: 'Bekerja sama dalam kelompok, berbagi peran, dan menghargai pendapat teman.'
+        },
+        {
+          id: 'Kemandirian',
+          title: 'Kemandirian',
+          desc: 'Bertanggung jawab atas proses dan hasil belajarnya secara mandiri.'
+        },
+        {
+          id: 'Kesehatan',
+          title: 'Kesehatan',
+          desc: 'Menjaga kebugaran fisik, keselamatan kerja saat praktik, dan kesehatan mental.'
+        },
+        {
+          id: 'Komunikasi',
+          title: 'Komunikasi',
+          desc: 'Menyampaikan ide secara lisan maupun tulisan dengan jelas dan santun.'
+        }
+      ];
+
+      function getFormattedIndonesianDate() {
+        var bulan = [
+          'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+          'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+        var now = new Date();
+        return now.getDate() + ' ' + bulan[now.getMonth()] + ' ' + now.getFullYear();
+      }
+
+      /* -----------------------------------------------------------------------
+         4. DATA CONTOH BAWAAN LENGKAP (IPAS KELAS 4 - KOTA BEKASI)
+         ----------------------------------------------------------------------- */
+      function createDefaultState() {
+        return {
+          kop: {
+            baris1: 'PEMERINTAH KOTA BEKASI',
+            baris2: 'DINAS PENDIDIKAN',
+            alamat: 'Jl. KH. Agus Salim No. 45, Kec. Bekasi Timur, Kota Bekasi, Jawa Barat • Email: sdnbekasijaya1@bekasikota.go.id',
+            kotaTitimangsa: 'Kota Bekasi',
+            logoKiri: DEFAULT_LOGO_BEKASI,
+            logoKanan: DEFAULT_LOGO_SD,
+            logoMode: 'dual'
+          },
+          sekolah: {
+            namaSekolah: 'SD NEGERI BEKASI JAYA I',
+            npsn: '20222841',
+            kecamatan: 'Kec. Bekasi Timur',
+            kepalaSekolah: 'Hj. Siti Aminah, S.Pd., M.Pd.',
+            nipKepalaSekolah: '19720514 199603 2 003',
+            namaGuru: 'Nurjanah, S.Pd.',
+            nipGuru: '19910817 201903 1 008',
+            kelasFase: 'Kelas IV (Empat) / Fase B',
+            semester: '1 (Ganjil)',
+            tahunAjaran: '2026/2027',
+            tanggalDokumen: getFormattedIndonesianDate()
+          },
+          modul: {
+            mapel: 'Ilmu Pengetahuan Alam dan Sosial (IPAS)',
+            topik: 'Transformasi Energi di Sekitar Kita (Percobaan Kincir Kertas Spiral)',
+            modelPembelajaran: 'Problem Based Learning (PBL)',
+            alokasiWaktu: '2 JP (2 x 35 Menit)',
+            pertemuan: 'Pertemuan ke-1',
+            moda: 'Tatap Muka (Luring)',
+            jumlahSiswa: '28 Peserta Didik',
+            targetSiswa: 'Peserta Didik Reguler / Tipikal',
+            sarpras: 'Buku Siswa IPAS Kelas IV, LKPD Kelompok, Kertas HVS/Origami, Gunting, Benang Kasur, Sumpit/Pensil, Lilin, Korek Api (diawasi guru)',
+            dimensiTerpilih: [
+              'Keimanan dan Ketakwaan terhadap Tuhan YME',
+              'Penalaran Kritis',
+              'Kreativitas',
+              'Kolaborasi',
+              'Komunikasi'
+            ],
+            catatanDimensi: 'Siswa mensyukuri anugerah energi dari Tuhan YME, bernalar kritis saat mengamati perputaran kincir kertas spiral di atas nyala lilin, berkolaborasi dalam kelompok percobaan, kreatif merancang kincir, dan mengomunikasikan hasil pengamatan di depan kelas.',
+            elemen: 'Pemahaman IPAS (Sains dan Sosial) dan Keterampilan Proses',
+            cp: 'Peserta didik mengidentifikasi sumber dan bentuk energi serta menjelaskan proses perubahan bentuk energi dalam kehidupan sehari-hari (contoh: energi kalor, listrik, bunyi, cahaya).',
+            tp: '1. Melalui pengamatan benda di sekitar, peserta didik mampu mengidentifikasi berbagai bentuk energi dan perubahannya dengan tepat.\n2. Melalui percobaan kincir kertas spiral, peserta didik mampu membuktikan perubahan energi panas (kalor) menjadi energi gerak secara runtut.\n3. Melalui diskusi kelompok, peserta didik mampu menyajikan laporan hasil pengamatan transformasi energi dengan percaya diri.',
+            pemahamanBermakna: 'Energi tidak dapat diciptakan atau dimusnahkan, tetapi dapat berubah bentuk dari satu bentuk ke bentuk lainnya untuk membantu aktivitas manusia sehari-hari.',
+            pertanyaanPemantik: '1. Mengapa kipas angin di ruang kelas dapat berputar setelah kabelnya dicolokkan ke stopkontak?\n2. Dapatkah panas dari nyala lilin menggerakkan sebuah benda tanpa disentuh tangan?',
+            waktuPendahuluan: '10 Menit',
+            kegiatanPendahuluan: '1. [Berkesadaran] Guru menyapa peserta didik dengan ramah, mengajak berdoa bersama sesuai agama masing-masing, serta mengecek kehadiran dan kesiapan belajar.\n2. [Menggembirakan] Guru mengajak siswa melakukan tepuk semangat dan ice breaking singkat "Tebak Bunyi & Gerak Benda" di kelas.\n3. [Bermakna] Guru mengajukan pertanyaan pemantik terkait kipas angin dan menyalakan lilin sederhana di meja depan, lalu menyampaikan tujuan pembelajaran serta manfaat materi dalam kehidupan sehari-hari.',
+            waktuInti: '50 Menit',
+            kegiatanInti: 'Sintaks 1: Orientasi Peserta Didik pada Masalah\n- [Bermakna] Guru menunjukkan gambar berbagai peralatan rumah tangga (setrika, kipas angin, blender, panel surya) serta sebuah lilin menyala, lalu menanyakan bagaimana energi dapat berubah bentuk.\n\nSintaks 2: Mengorganisasikan Peserta Didik untuk Belajar\n- [Berkesadaran] Peserta didik dibagi menjadi 5 kelompok heterogen (5-6 siswa) dan menerima LKPD serta alat bahan percobaan Kincir Kertas Spiral. Guru menekankan aturan keselamatan kerja saat menggunakan gunting dan lilin.\n\nSintaks 3: Membimbing Penyelidikan Individu maupun Kelompok\n- [Bermakna] Peserta didik memotong kertas membentuk pola spiral, mengikat ujung tengahnya dengan benang, lalu menggantungkannya di atas nyala lilin dengan jarak aman (±15 cm) di bawah pengawasan guru.\n- [Penalaran Kritis] Siswa mengamati arah dan kecepatan putaran kincir kertas spiral ketika lilin dinyalakan dan ketika lilin dipadamkan, kemudian mencatat hasilnya pada tabel LKPD.\n\nSintaks 4: Mengembangkan dan Menyajikan Hasil Karya\n- [Menggembirakan] Setiap kelompok menyusun kesimpulan perubahan energi pada LKPD dan mempresentasikan hasil percobaan secara bergantian di depan kelas dengan penuh antusias.\n\nSintaks 5: Menganalisis dan Mengevaluasi Proses Pemecahan Masalah\n- [Berkesadaran] Kelompok lain memberikan tanggapan/apresiasi, dan guru memberikan penguatan konsep bahwa udara panas di atas lilin bergerak naik sehingga memutar kincir (energi panas menjadi energi gerak).',
+            waktuPenutup: '10 Menit',
+            kegiatanPenutup: '1. [Bermakna] Peserta didik bersama guru menyimpulkan poin-poin penting tentang transformasi energi yang telah dipelajari hari ini.\n2. [Berkesadaran] Peserta didik mengerjakan lembar evaluasi sumatif singkat dan mengisi refleksi perasaan belajar.\n3. [Menggembirakan] Guru memberikan apresiasi bintang keaktifan kepada seluruh kelompok, menginformasikan materi pertemuan berikutnya, dan menutup pelajaran dengan doa.',
+            asesmenDiagnostik: 'Tanya jawab lisan di awal pembelajaran mengenai peralatan elektronik di rumah dan sumber energi yang menggerakkannya.',
+            asesmenFormatif: 'Observasi sikap kolaborasi & keselamatan kerja saat percobaan kincir spiral, serta penilaian kinerja pengisian tabel LKPD dan presentasi kelompok.',
+            asesmenSumatif: 'Tes tertulis (Pilihan Ganda dan Uraian singkat) mengenai contoh transformasi energi dalam kehidupan sehari-hari.',
+            pengayaanRemedial: 'Pengayaan: Peserta didik yang telah mencapai KKTP diminta membuat daftar 5 transformasi energi berantai di lingkungan sekolah.\nRemedial: Pendampingan kelompok kecil menggunakan kartu gambar pasangan benda dan perubahan energinya.',
+            refleksi: 'Refleksi Guru: Apakah seluruh siswa terlibat aktif saat percobaan kincir spiral? Bagian langkah mana yang perlu diperbaiki pada pertemuan berikutnya?\nRefleksi Siswa: Bagian percobaan mana yang paling menyenangkan hari ini? Perubahan energi apa yang baru kamu pahami?'
+          },
+          kktp: [
+            {
+              kriteria: 'Mengidentifikasi bentuk dan perubahan energi',
+              perluBimbingan: 'Belum mampu menyebutkan bentuk energi awal dan akhir pada benda di sekitar.',
+              cukup: 'Mampu menyebutkan 1-2 contoh perubahan energi dengan bantuan gambar/guru.',
+              baik: 'Mampu mengidentifikasi minimal 3 perubahan bentuk energi sehari-hari secara mandiri dan tepat.',
+              sangatBaik: 'Mampu menganalisis dan menjelaskan berbagai perubahan energi beserta manfaatnya secara rinci.'
+            },
+            {
+              kriteria: 'Melakukan percobaan kincir kertas spiral dan menyajikan data',
+              perluBimbingan: 'Memerlukan bimbingan penuh dalam merangkai alat dan mencatat hasil pengamatan.',
+              cukup: 'Mampu melakukan percobaan dengan arahan guru namun catatan hasil pengamatan belum lengkap.',
+              baik: 'Mampu melakukan percobaan sesuai prosedur keselamatan dan mencatat hasil pengamatan dengan runtut.',
+              sangatBaik: 'Mampu melakukan percobaan dengan sangat teliti, menjelaskan penyebab kincir berputar, dan mempresentasikan dengan percaya diri.'
+            }
+          ],
+          lkpd: {
+            includeInPrint: true,
+            judul: 'LKPD 1 — Membuktikan Transformasi Energi Melalui Kincir Kertas Spiral',
+            tipePengerjaan: 'Kelompok (Nama Anggota & Ketua)',
+            petunjuk: '1. Berdoalah sebelum memulai kegiatan percobaan.\n2. Siapkan alat dan bahan: kertas spiral, benang, pensil/sumpit, dan lilin.\n3. Ikuti langkah percobaan dengan tertib dan utamakan keselamatan saat menyalakan lilin bersama guru.\n4. Diskusikan hasil pengamatan bersama anggota kelompokmu dan tuliskan pada kolom di bawah ini!',
+            blocks: [
+              {
+                type: 'tabel',
+                title: 'A. Tabel Hasil Pengamatan Percobaan Kincir Kertas Spiral',
+                columns: 'No, Kondisi Lilin, Keadaan Kincir Kertas Spiral (Diam / Berputar), Bentuk Energi yang Terjadi',
+                rows: 3
+              },
+              {
+                type: 'uraian',
+                title: 'B. Pertanyaan Diskusi Kelompok: Mengapa kincir kertas spiral dapat berputar ketika diletakkan di atas nyala lilin? Jelaskan perubahan energinya!',
+                lines: 4
+              },
+              {
+                type: 'gambar',
+                title: 'C. Gambarkan sketsa rangkaian percobaan kincir kertas spiral kelompokmu beserta tanda panah aliran panasnya!',
+                height: 120
+              }
+            ]
+          },
+          evaluasi: {
+            includeInPrint: true,
+            judul: 'LEMBAR EVALUASI SUMATIF — TRANSFORMASI ENERGI',
+            petunjuk: 'Kerjakan soal di bawah ini dengan jujur, teliti, dan mandiri!',
+            soal: [
+              {
+                type: 'pg',
+                pertanyaan: 'Saat lilin dinyalakan di bawah kincir kertas spiral, kincir tersebut dapat berputar. Peristiwa ini membuktikan terjadinya perubahan energi ....',
+                opsiA: 'Energi gerak menjadi energi bunyi',
+                opsiB: 'Energi panas menjadi energi gerak',
+                opsiC: 'Energi cahaya menjadi energi kimia',
+                opsiD: 'Energi listrik menjadi energi panas',
+                kunci: 'B',
+                skor: 30
+              },
+              {
+                type: 'pg',
+                pertanyaan: 'Perubahan bentuk energi yang terjadi pada setrika listrik saat digunakan untuk merapikan pakaian adalah ....',
+                opsiA: 'Energi listrik menjadi energi panas',
+                opsiB: 'Energi panas menjadi energi listrik',
+                opsiC: 'Energi gerak menjadi energi cahaya',
+                opsiD: 'Energi kimia menjadi energi gerak',
+                kunci: 'A',
+                skor: 30
+              },
+              {
+                type: 'uraian',
+                pertanyaan: 'Tuliskan 2 contoh benda di rumahmu beserta perubahan bentuk energi yang terjadi saat benda tersebut digunakan!',
+                kunci: 'Contoh jawaban: (1) Kipas angin: energi listrik menjadi energi gerak; (2) Lampu: energi listrik menjadi energi cahaya dan panas; (3) Televisi: energi listrik menjadi energi cahaya dan bunyi.',
+                skor: 40,
+                lines: 4
+              }
+            ]
+          },
+          archives: []
+        };
+      }
+
+      /* -----------------------------------------------------------------------
+         5. INISIALISASI STATE APLIKASI
+         ----------------------------------------------------------------------- */
+      function loadInitialState() {
+        var raw = safeReadStorage(STORAGE_KEY);
+        var def = createDefaultState();
+        if (!raw) {
+          safeWriteStorage(STORAGE_KEY, JSON.stringify(def));
+          return def;
+        }
+        try {
+          var parsed = JSON.parse(raw);
+          return {
+            kop: Object.assign({}, def.kop, parsed.kop || {}, {
+              logoKiri: (parsed.kop && parsed.kop.logoKiri) ? parsed.kop.logoKiri : DEFAULT_LOGO_BEKASI,
+              logoKanan: (parsed.kop && parsed.kop.logoKanan) ? parsed.kop.logoKanan : DEFAULT_LOGO_SD
+            }),
+            sekolah: Object.assign({}, def.sekolah, parsed.sekolah || {}),
+            modul: Object.assign({}, def.modul, parsed.modul || {}),
+            kktp: Array.isArray(parsed.kktp) ? parsed.kktp : def.kktp,
+            lkpd: Object.assign({}, def.lkpd, parsed.lkpd || {}),
+            evaluasi: Object.assign({}, def.evaluasi, parsed.evaluasi || {}),
+            archives: Array.isArray(parsed.archives) ? parsed.archives : []
+          };
+        } catch (err) {
+          return def;
+        }
+      }
+
+      var appState = loadInitialState();
+
+      function saveState() {
+        safeWriteStorage(STORAGE_KEY, JSON.stringify(appState));
+        renderPrintPreview();
+      }
+
+      /* -----------------------------------------------------------------------
+         6. UTILITAS NOTIFIKASI TOAST, MODAL KONFIRMASI & ESCAPE HTML
+         ----------------------------------------------------------------------- */
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function nl2br(str) {
+        return escapeHtml(str).replace(/\n/g, '<br>');
+      }
+
+      function showToast(message, type) {
+        var container = document.getElementById('toastContainer');
+        if (!container) return;
+        var toast = document.createElement('div');
+        toast.className = 'toast-item' + (type ? ' ' + type : '');
+        toast.innerHTML = '<span>&#10003;</span><span>' + escapeHtml(message) + '</span>';
+        container.appendChild(toast);
+        setTimeout(function () {
+          if (toast && toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 3200);
+      }
+
+      var pendingConfirmCallback = null;
+
+      function openConfirmModal(title, message, onConfirm) {
+        var modal = document.getElementById('confirmModal');
+        document.getElementById('confirmTitle').textContent = title;
+        document.getElementById('confirmMessage').textContent = message;
+        pendingConfirmCallback = onConfirm;
+        modal.classList.add('open');
+      }
+
+      function closeConfirmModal() {
+        var modal = document.getElementById('confirmModal');
+        modal.classList.remove('open');
+        pendingConfirmCallback = null;
+      }
+
+      /* -----------------------------------------------------------------------
+         7. NAVIGASI TAB & SINKRONISASI INPUT FORM
+         ----------------------------------------------------------------------- */
+      function switchTab(tabId) {
+        var buttons = document.querySelectorAll('.tab-btn');
+        var panels = document.querySelectorAll('.tab-panel');
+        for (var i = 0; i < buttons.length; i++) {
+          var isTarget = buttons[i].getAttribute('data-tab') === tabId;
+          buttons[i].classList.toggle('active', isTarget);
+        }
+        for (var j = 0; j < panels.length; j++) {
+          var isPanel = panels[j].id === tabId;
+          panels[j].classList.toggle('active', isPanel);
+        }
+        if (tabId === 'tab-cetak') {
+          renderPrintPreview();
+        }
+        if (tabId === 'tab-sekolah') {
+          renderLiveKopPreview();
+          renderArchiveList();
+        }
+      }
+
+      function setVal(id, val) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.value = val !== undefined && val !== null ? val : '';
+        }
+      }
+
+      function populateAllForms() {
+        // Header & Logo Previews
+        var headerLogo = document.getElementById('headerLogoImg');
+        if (headerLogo) headerLogo.src = appState.kop.logoKiri || DEFAULT_LOGO_BEKASI;
+
+        // Tab 1: Modul Ajar
+        var mapelSelect = document.getElementById('mapelSelect');
+        var customMapelInput = document.getElementById('mapelCustomInput');
+        var mapelFound = false;
+        for (var i = 0; i < mapelSelect.options.length; i++) {
+          if (mapelSelect.options[i].value === appState.modul.mapel) {
+            mapelSelect.selectedIndex = i;
+            mapelFound = true;
+            break;
+          }
+        }
+        if (!mapelFound) {
+          mapelSelect.value = '__CUSTOM__';
+          customMapelInput.classList.remove('hidden');
+          customMapelInput.value = appState.modul.mapel;
+        } else {
+          customMapelInput.classList.add('hidden');
+          customMapelInput.value = '';
+        }
+
+        setVal('modulTopik', appState.modul.topik);
+        setVal('modulModel', appState.modul.modelPembelajaran);
+        setVal('modulAlokasi', appState.modul.alokasiWaktu);
+        setVal('modulPertemuan', appState.modul.pertemuan);
+        setVal('modulModa', appState.modul.moda);
+        setVal('modulJumlahSiswa', appState.modul.jumlahSiswa);
+        setVal('modulTarget', appState.modul.targetSiswa);
+        setVal('modulSarpras', appState.modul.sarpras);
+        setVal('modulCatatanDimensi', appState.modul.catatanDimensi);
+        setVal('modulElemen', appState.modul.elemen);
+        setVal('modulPemahaman', appState.modul.pemahamanBermakna);
+        setVal('modulCP', appState.modul.cp);
+        setVal('modulTP', appState.modul.tp);
+        setVal('modulPemantik', appState.modul.pertanyaanPemantik);
+        setVal('modulWaktuPendahuluan', appState.modul.waktuPendahuluan);
+        setVal('modulPendahuluan', appState.modul.kegiatanPendahuluan);
+        setVal('modulWaktuInti', appState.modul.waktuInti);
+        setVal('modulInti', appState.modul.kegiatanInti);
+        setVal('modulWaktuPenutup', appState.modul.waktuPenutup);
+        setVal('modulPenutup', appState.modul.kegiatanPenutup);
+        setVal('modulAsesmenDiagnostik', appState.modul.asesmenDiagnostik);
+        setVal('modulAsesmenFormatif', appState.modul.asesmenFormatif);
+        setVal('modulAsesmenSumatif', appState.modul.asesmenSumatif);
+        setVal('modulPengayaan', appState.modul.pengayaanRemedial);
+        setVal('modulRefleksi', appState.modul.refleksi);
+
+        renderDimensiGrid();
+        renderKktpList();
+
+        // Tab 2: LKPD
+        var lkpdCheck = document.getElementById('lkpdIncludePrint');
+        if (lkpdCheck) lkpdCheck.checked = !!appState.lkpd.includeInPrint;
+        setVal('lkpdJudul', appState.lkpd.judul);
+        setVal('lkpdTipe', appState.lkpd.tipePengerjaan);
+        setVal('lkpdPetunjuk', appState.lkpd.petunjuk);
+        renderLkpdBlocks();
+
+        // Tab 3: Evaluasi
+        var evalCheck = document.getElementById('evalIncludePrint');
+        if (evalCheck) evalCheck.checked = !!appState.evaluasi.includeInPrint;
+        setVal('evalJudul', appState.evaluasi.judul);
+        setVal('evalPetunjuk', appState.evaluasi.petunjuk);
+        renderSoalList();
+
+        // Tab 5: Kop & Sekolah
+        setVal('kopBaris1', appState.kop.baris1);
+        setVal('kopBaris2', appState.kop.baris2);
+        setVal('sekolahNamaKop', appState.sekolah.namaSekolah);
+        setVal('kopKotaTitimangsa', appState.kop.kotaTitimangsa);
+        setVal('kopAlamat', appState.kop.alamat);
+        setVal('logoModeSelect', appState.kop.logoMode || 'dual');
+
+        setVal('sekolahNama', appState.sekolah.namaSekolah);
+        setVal('sekolahNpsn', appState.sekolah.npsn);
+        setVal('sekolahKecamatan', appState.sekolah.kecamatan);
+        setVal('sekolahKepsek', appState.sekolah.kepalaSekolah);
+        setVal('sekolahNipKepsek', appState.sekolah.nipKepalaSekolah);
+        setVal('sekolahTanggal', appState.sekolah.tanggalDokumen);
+        setVal('sekolahGuru', appState.sekolah.namaGuru);
+        setVal('sekolahNipGuru', appState.sekolah.nipGuru);
+        setVal('sekolahKelasFase', appState.sekolah.kelasFase);
+        setVal('sekolahSemester', appState.sekolah.semester);
+        setVal('sekolahTahunAjaran', appState.sekolah.tahunAjaran);
+
+        updateLogoPreviewWidgets();
+        renderLiveKopPreview();
+        renderArchiveList();
+        renderPrintPreview();
+      }
+
+      /* -----------------------------------------------------------------------
+         8. RENDER & LOGIKA 8 DIMENSI PROFIL LULUSAN
+         ----------------------------------------------------------------------- */
+      function renderDimensiGrid() {
+        var grid = document.getElementById('dimensiGrid');
+        var badge = document.getElementById('dimensiCounterBadge');
+        if (!grid) return;
+
+        var selectedList = appState.modul.dimensiTerpilih || [];
+        if (badge) {
+          badge.textContent = selectedList.length + ' dari 8 Dimensi Terpilih';
+        }
+
+        var html = '';
+        for (var i = 0; i < DELAPAN_DIMENSI.length; i++) {
+          var dim = DELAPAN_DIMENSI[i];
+          var isSelected = selectedList.indexOf(dim.id) !== -1;
+          html += '<div class="dimensi-card' + (isSelected ? ' selected' : '') + '" data-dimensi-id="' + escapeHtml(dim.id) + '">' +
+            '<div class="dimensi-check">' + (isSelected ? '&#10003;' : '') + '</div>' +
+            '<div>' +
+              '<div class="dimensi-title">' + (i + 1) + '. ' + escapeHtml(dim.title) + '</div>' +
+              '<div class="dimensi-sub">' + escapeHtml(dim.desc) + '</div>' +
+            '</div>' +
+          '</div>';
+        }
+        grid.innerHTML = html;
+      }
+
+      function toggleDimensi(dimId) {
+        var list = appState.modul.dimensiTerpilih || [];
+        var idx = list.indexOf(dimId);
+        if (idx === -1) {
+          list.push(dimId);
+        } else {
+          list.splice(idx, 1);
+        }
+        appState.modul.dimensiTerpilih = list;
+        saveState();
+        renderDimensiGrid();
+      }
+
+      /* -----------------------------------------------------------------------
+         9. GENERATOR OTOMATIS 100% OFFLINE (SINTAKS MODEL + MODUL LENGKAP)
+         ----------------------------------------------------------------------- */
+      function buildSintaksKegiatan(model, mapel, topik, kelasFase) {
+        var safeTopik = topik && topik.trim() ? topik.trim() : 'Materi Pembelajaran';
+        var safeMapel = mapel || 'Mata Pelajaran';
+        var safeKelas = kelasFase || 'Sekolah Dasar';
+
+        var pendahuluan =
+          '1. [Berkesadaran] Guru membuka pelajaran dengan salam, menanyakan kabar peserta didik, mengajak berdoa bersama sebelum belajar, dan mengecek kehadiran serta kesiapan kelas.\n' +
+          '2. [Menggembirakan] Guru mengajak peserta didik melakukan ice breaking singkat / tepuk fokus untuk membangun suasana belajar yang positif.\n' +
+          '3. [Bermakna] Guru mengaitkan materi sebelumnya dengan topik "' + safeTopik + '" melalui pertanyaan pemantik dan menyampaikan tujuan pembelajaran pada mata pelajaran ' + safeMapel + ' (' + safeKelas + ').';
+
+        var inti = '';
+        if (model === 'Project Based Learning (PjBL)') {
+          inti =
+            'Sintaks 1: Pertanyaan Mendasar (Start with the Essential Question)\n' +
+            '- [Bermakna] Guru menyajikan fenomena atau studi kasus kontekstual terkait "' + safeTopik + '" dan mengajukan pertanyaan mendasar yang mendorong rasa ingin tahu peserta didik.\n\n' +
+            'Sintaks 2: Mendesain Perencanaan Produk / Proyek\n' +
+            '- [Berkesadaran] Peserta didik dibagi menjadi beberapa kelompok kecil, berdiskusi menentukan rancangan karya/proyek terkait "' + safeTopik + '", serta membagi tugas anggota kelompok.\n\n' +
+            'Sintaks 3: Menyusun Jadwal Pembuatan Proyek\n' +
+            '- [Berkesadaran] Guru bersama peserta didik menyepakati tahapan waktu pengerjaan proyek dan kriteria keberhasilan pada LKPD.\n\n' +
+            'Sintaks 4: Memonitor Keaktifan dan Perkembangan Proyek\n' +
+            '- [Menggembirakan] Peserta didik membuat karya/produk proyek secara kolaboratif sementara guru berkeliling membimbing kelompok yang mengalami kendala.\n\n' +
+            'Sintaks 5: Menguji Hasil / Presentasi Proyek\n' +
+            '- [Bermakna] Setiap kelompok memamerkan dan mempresentasikan hasil karya "' + safeTopik + '" di depan kelas.\n\n' +
+            'Sintaks 6: Evaluasi Pengalaman Belajar\n' +
+            '- [Berkesadaran] Peserta didik saling memberikan umpan balik positif dan guru memberikan penguatan konsep esensial.';
+        } else if (model === 'Discovery Learning') {
+          inti =
+            'Sintaks 1: Pemberian Rangsangan (Stimulation)\n' +
+            '- [Menggembirakan] Guru menampilkan gambar, benda nyata, atau cerita singkat yang berkaitan dengan "' + safeTopik + '" untuk memancing rasa penasaran siswa.\n\n' +
+            'Sintaks 2: Pernyataan / Identifikasi Masalah (Problem Statement)\n' +
+            '- [Berkesadaran] Peserta didik merumuskan pertanyaan atau dugaan awal (hipotesis) mengenai konsep "' + safeTopik + '" pada LKPD.\n\n' +
+            'Sintaks 3: Pengumpulan Data (Data Collection)\n' +
+            '- [Bermakna] Peserta didik melakukan pengamatan, membaca sumber belajar, atau mengeksplorasi contoh-contoh "' + safeTopik + '" secara berkelompok.\n\n' +
+            'Sintaks 4: Pengolahan Data (Data Processing)\n' +
+            '- [Bermakna] Peserta didik mengelompokkan, mencatat, dan mendiskusikan temuan data pada tabel pengamatan LKPD.\n\n' +
+            'Sintaks 5: Pembuktian (Verification)\n' +
+            '- [Berkesadaran] Perwakilan kelompok mempresentasikan hasil temuan untuk dicocokkan bersama konsep yang benar.\n\n' +
+            'Sintaks 6: Menarik Simpulan / Generalisasi (Generalization)\n' +
+            '- [Bermakna] Peserta didik bersama guru merumuskan kesimpulan utama tentang "' + safeTopik + '".';
+        } else if (model === 'Inquiry Learning') {
+          inti =
+            'Sintaks 1: Orientasi Masalah\n' +
+            '- [Bermakna] Guru mengajak peserta didik mengamati permasalahan nyata di sekitar sekolah/rumah yang berhubungan dengan "' + safeTopik + '".\n\n' +
+            'Sintaks 2: Merumuskan Masalah\n' +
+            '- [Berkesadaran] Peserta didik menyusun pertanyaan penyelidikan terkait "' + safeTopik + '" dengan bimbingan guru.\n\n' +
+            'Sintaks 3: Mengajukan Hipotesis\n' +
+            '- [Menggembirakan] Peserta didik menuliskan jawaban sementara (dugaan awal) berdasarkan pengetahuan yang telah dimiliki.\n\n' +
+            'Sintaks 4: Mengumpulkan Data / Bukti\n' +
+            '- [Bermakna] Peserta didik melakukan penyelidikan, wawancara sederhana, atau pengamatan langsung dan menuliskannya dalam LKPD.\n\n' +
+            'Sintaks 5: Menguji Hipotesis dan Merumuskan Kesimpulan\n' +
+            '- [Berkesadaran] Peserta didik membandingkan hasil penyelidikan dengan dugaan awal lalu mempresentasikan kesimpulan di depan kelas.';
+        } else if (model === 'Cooperative Learning') {
+          inti =
+            'Sintaks 1: Menyampaikan Tujuan dan Memotivasi Siswa\n' +
+            '- [Menggembirakan] Guru menyampaikan tujuan pembelajaran "' + safeTopik + '" dan memotivasi siswa untuk aktif bekerja sama dalam tim.\n\n' +
+            'Sintaks 2: Menyajikan Informasi\n' +
+            '- [Bermakna] Guru menyajikan pengantar konsep utama "' + safeTopik + '" melalui media visual dan contoh konkret.\n\n' +
+            'Sintaks 3: Mengorganisasikan Siswa ke dalam Kelompok Belajar\n' +
+            '- [Berkesadaran] Guru membentuk kelompok belajar beranggotakan 4-5 siswa secara heterogen dan membagikan LKPD.\n\n' +
+            'Sintaks 4: Membimbing Kelompok Bekerja dan Belajar\n' +
+            '- [Bermakna] Setiap anggota kelompok berdiskusi, saling membantu memahami materi "' + safeTopik + '", dan menyelesaikan tugas LKPD.\n\n' +
+            'Sintaks 5: Evaluasi / Kuis Kelompok\n' +
+            '- [Menggembirakan] Setiap kelompok mempresentasikan hasil diskusinya dan mengikuti kuis tanya jawab singkat.\n\n' +
+            'Sintaks 6: Memberikan Penghargaan\n' +
+            '- [Berkesadaran] Guru memberikan apresiasi dan penghargaan bintang kerja sama kepada kelompok yang paling kompak dan aktif.';
+        } else {
+          // Default: Problem Based Learning (PBL)
+          inti =
+            'Sintaks 1: Orientasi Peserta Didik pada Masalah\n' +
+            '- [Bermakna] Guru menyajikan situasi masalah kontekstual dalam kehidupan sehari-hari yang berkaitan dengan "' + safeTopik + '" dan mengajak peserta didik mengamatinya.\n\n' +
+            'Sintaks 2: Mengorganisasikan Peserta Didik untuk Belajar\n' +
+            '- [Berkesadaran] Peserta didik dibagi menjadi kelompok heterogen, menerima LKPD, dan membagi peran tugas masing-masing anggota.\n\n' +
+            'Sintaks 3: Membimbing Penyelidikan Individu maupun Kelompok\n' +
+            '- [Bermakna] Peserta didik berdiskusi, mengamati, dan mengumpulkan informasi untuk memecahkan masalah "' + safeTopik + '" pada LKPD dengan bimbingan guru.\n\n' +
+            'Sintaks 4: Mengembangkan dan Menyajikan Hasil Karya\n' +
+            '- [Menggembirakan] Peserta didik menuliskan hasil pemecahan masalah dengan rapi dan mempresentasikannya di depan kelas secara percaya diri.\n\n' +
+            'Sintaks 5: Menganalisis dan Mengevaluasi Proses Pemecahan Masalah\n' +
+            '- [Berkesadaran] Peserta didik dari kelompok lain memberikan tanggapan, dan guru bersama siswa meluruskan serta menyimpulkan konsep utama "' + safeTopik + '".';
+        }
+
+        var penutup =
+          '1. [Bermakna] Peserta didik bersama guru menyimpulkan kembali inti materi pembelajaran tentang "' + safeTopik + '".\n' +
+          '2. [Berkesadaran] Peserta didik mengerjakan soal evaluasi singkat dan melakukan refleksi diri mengenai hal yang sudah dipahami maupun yang masih perlu dipelajari.\n' +
+          '3. [Menggembirakan] Guru memberikan apresiasi atas usaha dan keaktifan peserta didik, menyampaikan rencana pembelajaran berikutnya, dan menutup kegiatan dengan doa bersama.';
+
+        return {
+          pendahuluan: pendahuluan,
+          inti: inti,
+          penutup: penutup
+        };
+      }
+
+      function generateFullOfflinePackage() {
+        var mapel = appState.modul.mapel || 'Ilmu Pengetahuan Alam dan Sosial (IPAS)';
+        var topik = (appState.modul.topik || '').trim() || 'Materi Pembelajaran Kontekstual';
+        var model = appState.modul.modelPembelajaran || 'Problem Based Learning (PBL)';
+        var kelasFase = appState.sekolah.kelasFase || 'Kelas IV (Empat) / Fase B';
+        var alokasi = appState.modul.alokasiWaktu || '2 JP (2 x 35 Menit)';
+
+        var sintaks = buildSintaksKegiatan(model, mapel, topik, kelasFase);
+
+        // Deteksi elemen & CP adaptif berdasarkan Mapel & Fase
+        var elemen = 'Pemahaman Konsep dan Keterampilan Proses ' + mapel;
+        var cp = 'Pada akhir fase ini, peserta didik mampu memahami, menganalisis, dan menerapkan konsep dasar mengenai ' + topik + ' dalam kehidupan sehari-hari secara runtut dan bermakna.';
+
+        if (mapel.indexOf('IPAS') !== -1) {
+          elemen = 'Pemahaman IPAS (Sains dan Sosial) dan Keterampilan Proses';
+          cp = 'Peserta didik memahami konsep dasar serta keterkaitan fenomena alam dan sosial terkait "' + topik + '", serta mampu melakukan pengamatan sederhana dan mengomunikasikan hasilnya.';
+        } else if (mapel.indexOf('Matematika') !== -1) {
+          elemen = 'Bilangan, Pengukuran, dan Pemecahan Masalah Matematika';
+          cp = 'Peserta didik mampu memahami konsep, melakukan operasi hitung/pengukuran, serta menyelesaikan masalah kontekstual sehari-hari yang berkaitan dengan "' + topik + '".';
+        } else if (mapel.indexOf('Bahasa Indonesia') !== -1) {
+          elemen = 'Menyimak, Membaca dan Memirsa, Berbicara dan Mempresentasikan, Menulis';
+          cp = 'Peserta didik mampu memahami informasi, menyampaikan gagasan secara lisan dengan santun, serta menulis teks sederhana yang berkaitan dengan "' + topik + '".';
+        } else if (mapel.indexOf('Pendidikan Pancasila') !== -1) {
+          elemen = 'Pancasila, Undang-Undang Dasar Negara RI Tahun 1945, Bhinneka Tunggal Ika, dan NKRI';
+          cp = 'Peserta didik mampu mengenal, memahami, dan menerapkan nilai-nilai karakter serta aturan hidup bermasyarakat yang berkaitan dengan "' + topik + '".';
+        }
+
+        appState.modul.elemen = elemen;
+        appState.modul.cp = cp;
+        appState.modul.tp =
+          '1. Melalui pengamatan media pembelajaran, peserta didik mampu menjelaskan konsep utama "' + topik + '" dengan bahasa sendiri secara tepat.\n' +
+          '2. Melalui diskusi dan aktivitas pada LKPD, peserta didik mampu mengidentifikasi contoh penerapan "' + topik + '" dalam kehidupan sehari-hari.\n' +
+          '3. Melalui presentasi kelompok, peserta didik mampu menyampaikan hasil diskusi mengenai "' + topik + '" dengan percaya diri.';
+        appState.modul.pemahamanBermakna = 'Memahami "' + topik + '" membantu peserta didik memecahkan persoalan nyata di lingkungan sekolah dan rumah secara bijak dan bertanggung jawab.';
+        appState.modul.pertanyaanPemantik =
+          '1. Pernahkah kalian menjumpai peristiwa atau contoh yang berkaitan dengan "' + topik + '" di sekitar rumah atau sekolah?\n' +
+          '2. Mengapa kita perlu memahami "' + topik + '" dalam kehidupan sehari-hari?';
+
+        appState.modul.dimensiTerpilih = [
+          'Keimanan dan Ketakwaan terhadap Tuhan YME',
+          'Penalaran Kritis',
+          'Kreativitas',
+          'Kolaborasi',
+          'Komunikasi'
+        ];
+        appState.modul.catatanDimensi = 'Peserta didik mengawali pembelajaran dengan berdoa, bernalar kritis menganalisis permasalahan "' + topik + '", bekerja sama dalam kelompok LKPD, serta mengomunikasikan hasil karya di depan kelas.';
+
+        appState.modul.waktuPendahuluan = '10 Menit';
+        appState.modul.kegiatanPendahuluan = sintaks.pendahuluan;
+        appState.modul.waktuInti = '50 Menit';
+        appState.modul.kegiatanInti = sintaks.inti;
+        appState.modul.waktuPenutup = '10 Menit';
+        appState.modul.kegiatanPenutup = sintaks.penutup;
+
+        appState.modul.asesmenDiagnostik = 'Pertanyaan pemantik lisan di awal pelajaran untuk memetakan pemahaman awal peserta didik tentang "' + topik + '".';
+        appState.modul.asesmenFormatif = 'Observasi keaktifan diskusi kelompok, penilaian proses pengerjaan LKPD, dan penilaian keterampilan presentasi.';
+        appState.modul.asesmenSumatif = 'Tes evaluasi tertulis (Pilihan Ganda dan Uraian) pada akhir pembelajaran (' + alokasi + ').';
+        appState.modul.pengayaanRemedial = 'Pengayaan: Peserta didik membuat rangkuman kreatif atau soal tantangan mandiri terkait "' + topik + '".\nRemedial: Bimbingan ulang secara bertahap menggunakan contoh konkret di sekitar siswa.';
+        appState.modul.refleksi = 'Refleksi Guru: Apakah seluruh tujuan pembelajaran tercapai dengan baik? Siswa mana yang memerlukan pendampingan khusus?\nRefleksi Siswa: Apa hal baru yang kamu pelajari tentang "' + topik + '" hari ini?';
+
+        appState.kktp = [
+          {
+            kriteria: 'Memahami konsep dasar ' + topik,
+            perluBimbingan: 'Belum mampu menjelaskan pengertian dan contoh dasar ' + topik + '.',
+            cukup: 'Mampu menjelaskan sebagian konsep ' + topik + ' dengan bimbingan guru.',
+            baik: 'Mampu menjelaskan konsep dan contoh ' + topik + ' secara mandiri dan tepat.',
+            sangatBaik: 'Mampu menganalisis dan menghubungkan konsep ' + topik + ' dengan berbagai situasi nyata secara rinci.'
+          },
+          {
+            kriteria: 'Menyelesaikan LKPD dan mempresentasikan hasil diskusi',
+            perluBimbingan: 'Belum aktif berdiskusi dan belum menyelesaikan isian LKPD.',
+            cukup: 'Ikut berdiskusi namun hasil isian LKPD masih perlu dilengkapi.',
+            baik: 'Menyelesaikan seluruh bagian LKPD dengan rapi dan mempresentasikan hasilnya dengan jelas.',
+            sangatBaik: 'Menyelesaikan LKPD dengan sangat sistematis, aktif memimpin diskusi, dan menjawab pertanyaan teman dengan lugas.'
+          }
+        ];
+
+        appState.lkpd = {
+          includeInPrint: true,
+          judul: 'LKPD — Eksplorasi & Pemahaman Materi: ' + topik,
+          tipePengerjaan: 'Kelompok (Nama Anggota & Ketua)',
+          petunjuk: '1. Berdoalah sebelum mengerjakan LKPD.\n2. Bacalah setiap instruksi kegiatan bersama anggota kelompokmu.\n3. Diskusikan dan tuliskan jawaban dengan rapi dan jelas pada kolom yang tersedia.',
+          blocks: [
+            {
+              type: 'tabel',
+              title: 'A. Tabel Pengamatan / Identifikasi Contoh: ' + topik,
+              columns: 'No, Contoh / Objek yang Diamati, Ciri-Ciri / Proses yang Terjadi, Manfaat dalam Kehidupan Sehari-hari',
+              rows: 3
+            },
+            {
+              type: 'uraian',
+              title: 'B. Pertanyaan Diskusi: Jelaskan kesimpulan kelompokmu tentang pentingnya memahami "' + topik + '" dalam kehidupan sehari-hari!',
+              lines: 4
+            },
+            {
+              type: 'gambar',
+              title: 'C. Buatlah gambar ilustrasi atau peta konsep sederhana mengenai "' + topik + '" pada kotak di bawah ini!',
+              height: 115
+            }
+          ]
+        };
+
+        appState.evaluasi = {
+          includeInPrint: true,
+          judul: 'LEMBAR EVALUASI SUMATIF — ' + topik.toUpperCase(),
+          petunjuk: 'Berilah tanda silang (X) pada huruf A, B, C, atau D di depan jawaban yang paling tepat, dan jawablah soal uraian dengan jelas!',
+          soal: [
+            {
+              type: 'pg',
+              pertanyaan: 'Salah satu manfaat utama mempelajari materi "' + topik + '" dalam kehidupan sehari-hari adalah ....',
+              opsiA: 'Membantu memahami dan menyelesaikan masalah nyata di sekitar kita',
+              opsiB: 'Membuat kita menghafal tanpa memahami maknanya',
+              opsiC: 'Menghindari kerja sama dengan teman di kelas',
+              opsiD: 'Mengabaikan lingkungan sekitar sekolah dan rumah',
+              kunci: 'A',
+              skor: 30
+            },
+            {
+              type: 'pg',
+              pertanyaan: 'Sikap yang tepat saat melakukan kegiatan pengamatan dan diskusi kelompok tentang "' + topik + '" adalah ....',
+              opsiA: 'Mengerjakan sendiri tanpa mendengar pendapat teman',
+              opsiB: 'Bekerja sama, saling menghargai pendapat, dan mencatat hasil dengan teliti',
+              opsiC: 'Menunggu kelompok lain selesai lalu menyalinnya',
+              opsiD: 'Bermain-main saat teman sedang mempresentasikan hasil',
+              kunci: 'B',
+              skor: 30
+            },
+            {
+              type: 'uraian',
+              pertanyaan: 'Tuliskan 2 contoh penerapan atau peristiwa yang berkaitan dengan "' + topik + '" yang pernah kamu temui di lingkungan rumah atau sekolah!',
+              kunci: 'Jawaban disesuaikan dengan 2 contoh nyata yang relevan dengan topik "' + topik + '" disertai penjelasan singkat yang logis.',
+              skor: 40,
+              lines: 4
+            }
+          ]
+        };
+
+        saveState();
+        populateAllForms();
+        showToast('Modul Ajar, LKPD, Rubrik KKTP & Soal Evaluasi berhasil disusun otomatis!');
+      }
+
+      function insertSyntaxOnlyOffline() {
+        var mapel = appState.modul.mapel || 'Mata Pelajaran';
+        var topik = (appState.modul.topik || '').trim() || 'Materi Pembelajaran';
+        var model = appState.modul.modelPembelajaran || 'Problem Based Learning (PBL)';
+        var kelasFase = appState.sekolah.kelasFase || 'Sekolah Dasar';
+
+        var sintaks = buildSintaksKegiatan(model, mapel, topik, kelasFase);
+        appState.modul.kegiatanPendahuluan = sintaks.pendahuluan;
+        appState.modul.kegiatanInti = sintaks.inti;
+        appState.modul.kegiatanPenutup = sintaks.penutup;
+
+        saveState();
+        setVal('modulPendahuluan', appState.modul.kegiatanPendahuluan);
+        setVal('modulInti', appState.modul.kegiatanInti);
+        setVal('modulPenutup', appState.modul.kegiatanPenutup);
+        showToast('Kerangka sintaks model ' + model + ' berhasil disisipkan!');
+      }
+
+      /* -----------------------------------------------------------------------
+         10. RUBRIK KKTP DINAMIS
+         ----------------------------------------------------------------------- */
+      function renderKktpList() {
+        var container = document.getElementById('kktpListContainer');
+        if (!container) return;
+        var list = appState.kktp || [];
+        if (list.length === 0) {
+          container.innerHTML = '<p style="font-size: 0.82rem; color: #64748b; text-align: center; padding: 14px;">Belum ada baris kriteria KKTP. Klik "+ Tambah Kriteria KKTP" untuk menambahkan.</p>';
+          return;
+        }
+        var html = '';
+        for (var i = 0; i < list.length; i++) {
+          var row = list[i];
+          html += '<div class="sub-box" data-kktp-index="' + i + '">' +
+            '<div class="sub-box-header">' +
+              '<strong style="font-size: 0.84rem; color: var(--primary-dark);">Kriteria KKTP #' + (i + 1) + '</strong>' +
+              '<button type="button" class="btn btn-soft-danger btn-sm" data-action="delete-kktp" data-index="' + i + '">Hapus Baris</button>' +
+            '</div>' +
+            '<div class="form-group" style="margin-bottom: 10px;">' +
+              '<label class="form-label">Aspek / Kriteria Penilaian</label>' +
+              '<input type="text" class="form-input" data-kktp-field="kriteria" data-index="' + i + '" value="' + escapeHtml(row.kriteria) + '" />' +
+            '</div>' +
+            '<div class="grid-4">' +
+              '<div class="form-group">' +
+                '<label class="form-label">Perlu Bimbingan (1)</label>' +
+                '<textarea class="form-textarea" rows="2" data-kktp-field="perluBimbingan" data-index="' + i + '">' + escapeHtml(row.perluBimbingan) + '</textarea>' +
+              '</div>' +
+              '<div class="form-group">' +
+                '<label class="form-label">Cukup (2)</label>' +
+                '<textarea class="form-textarea" rows="2" data-kktp-field="cukup" data-index="' + i + '">' + escapeHtml(row.cukup) + '</textarea>' +
+              '</div>' +
+              '<div class="form-group">' +
+                '<label class="form-label">Baik (3)</label>' +
+                '<textarea class="form-textarea" rows="2" data-kktp-field="baik" data-index="' + i + '">' + escapeHtml(row.baik) + '</textarea>' +
+              '</div>' +
+              '<div class="form-group">' +
+                '<label class="form-label">Sangat Baik (4)</label>' +
+                '<textarea class="form-textarea" rows="2" data-kktp-field="sangatBaik" data-index="' + i + '">' + escapeHtml(row.sangatBaik) + '</textarea>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+        container.innerHTML = html;
+      }
+
+      /* -----------------------------------------------------------------------
+         11. PENYUSUN BLOK LKPD DINAMIS (URAIAN, TABEL, KOTAK GAMBAR)
+         ----------------------------------------------------------------------- */
+      function renderLkpdBlocks() {
+        var container = document.getElementById('lkpdBlocksContainer');
+        if (!container) return;
+        var blocks = appState.lkpd.blocks || [];
+        if (blocks.length === 0) {
+          container.innerHTML = '<p style="font-size: 0.82rem; color: #64748b; text-align: center; padding: 16px;">Belum ada aktivitas LKPD. Gunakan tombol di atas untuk menambah Pertanyaan Uraian, Tabel Pengamatan, atau Kotak Gambar.</p>';
+          return;
+        }
+
+        var html = '';
+        for (var i = 0; i < blocks.length; i++) {
+          var b = blocks[i];
+          var typeLabel = b.type === 'tabel' ? 'Tabel Pengamatan / Klasifikasi' : (b.type === 'gambar' ? 'Kotak Gambar / Sketsa / Peta Konsep' : 'Pertanyaan Uraian / Pengamatan');
+          html += '<div class="sub-box">' +
+            '<div class="sub-box-header">' +
+              '<span class="pill-badge">Blok #' + (i + 1) + ' • ' + typeLabel + '</span>' +
+              '<div class="btn-group">' +
+                '<button type="button" class="btn btn-secondary btn-sm" data-action="lkpd-up" data-index="' + i + '"' + (i === 0 ? ' disabled' : '') + '>&uarr; Naik</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" data-action="lkpd-down" data-index="' + i + '"' + (i === blocks.length - 1 ? ' disabled' : '') + '>&darr; Turun</button>' +
+                '<button type="button" class="btn btn-soft-danger btn-sm" data-action="lkpd-del" data-index="' + i + '">Hapus</button>' +
+              '</div>' +
+            '</div>' +
+            '<div class="form-group" style="margin-bottom: 10px;">' +
+              '<label class="form-label">Instruksi / Pertanyaan Aktivitas</label>' +
+              '<textarea class="form-textarea" rows="2" data-lkpd-field="title" data-index="' + i + '">' + escapeHtml(b.title) + '</textarea>' +
+            '</div>';
+
+          if (b.type === 'uraian') {
+            html += '<div class="form-group" style="max-width: 220px;">' +
+              '<label class="form-label">Jumlah Garis Jawaban Siswa (1–8)</label>' +
+              '<input type="number" min="1" max="8" class="form-input" data-lkpd-field="lines" data-index="' + i + '" value="' + (b.lines || 4) + '" />' +
+            '</div>';
+          } else if (b.type === 'tabel') {
+            html += '<div class="grid-3">' +
+              '<div class="form-group col-span-2">' +
+                '<label class="form-label">Judul Kolom Tabel (Pisahkan dengan tanda koma)</label>' +
+                '<input type="text" class="form-input" data-lkpd-field="columns" data-index="' + i + '" value="' + escapeHtml(b.columns || 'No, Pengamatan, Hasil') + '" />' +
+              '</div>' +
+              '<div class="form-group">' +
+                '<label class="form-label">Jumlah Baris Kosong (1–10)</label>' +
+                '<input type="number" min="1" max="10" class="form-input" data-lkpd-field="rows" data-index="' + i + '" value="' + (b.rows || 3) + '" />' +
+              '</div>' +
+            '</div>';
+          } else if (b.type === 'gambar') {
+            html += '<div class="form-group" style="max-width: 240px;">' +
+              '<label class="form-label">Tinggi Kotak Gambar (px)</label>' +
+              '<input type="number" min="60" max="300" step="10" class="form-input" data-lkpd-field="height" data-index="' + i + '" value="' + (b.height || 120) + '" />' +
+            '</div>';
+          }
+
+          html += '</div>';
+        }
+        container.innerHTML = html;
+      }
+
+      /* -----------------------------------------------------------------------
+         12. PENYUSUN SOAL EVALUASI & KUNCI JAWABAN
+         ----------------------------------------------------------------------- */
+      function renderSoalList() {
+        var container = document.getElementById('soalListContainer');
+        var badge = document.getElementById('totalSkorBadge');
+        if (!container) return;
+
+        var list = appState.evaluasi.soal || [];
+        var totalSkor = 0;
+        for (var s = 0; s < list.length; s++) {
+          totalSkor += Number(list[s].skor) || 0;
+        }
+        if (badge) {
+          badge.textContent = 'Total Skor Maksimal: ' + totalSkor + ' Poin';
+        }
+
+        if (list.length === 0) {
+          container.innerHTML = '<p style="font-size: 0.82rem; color: #64748b; text-align: center; padding: 16px;">Belum ada butir soal. Klik tombol di atas untuk menambah Soal Pilihan Ganda atau Soal Isian/Uraian.</p>';
+          return;
+        }
+
+        var html = '';
+        for (var i = 0; i < list.length; i++) {
+          var item = list[i];
+          var isPg = item.type === 'pg';
+          html += '<div class="sub-box">' +
+            '<div class="sub-box-header">' +
+              '<span class="pill-badge' + (isPg ? '' : ' emerald') + '">Soal #' + (i + 1) + ' • ' + (isPg ? 'Pilihan Ganda (A–D)' : 'Isian / Uraian') + '</span>' +
+              '<div class="btn-group">' +
+                '<button type="button" class="btn btn-secondary btn-sm" data-action="soal-up" data-index="' + i + '"' + (i === 0 ? ' disabled' : '') + '>&uarr; Naik</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" data-action="soal-down" data-index="' + i + '"' + (i === list.length - 1 ? ' disabled' : '') + '>&darr; Turun</button>' +
+                '<button type="button" class="btn btn-soft-danger btn-sm" data-action="soal-del" data-index="' + i + '">Hapus</button>' +
+              '</div>' +
+            '</div>' +
+            '<div class="form-group" style="margin-bottom: 10px;">' +
+              '<label class="form-label">Pertanyaan Soal</label>' +
+              '<textarea class="form-textarea" rows="2" data-soal-field="pertanyaan" data-index="' + i + '">' + escapeHtml(item.pertanyaan) + '</textarea>' +
+            '</div>';
+
+          if (isPg) {
+            html += '<div class="grid-2" style="margin-bottom: 10px;">' +
+              '<div class="form-group"><label class="form-label">Pilihan A</label><input type="text" class="form-input" data-soal-field="opsiA" data-index="' + i + '" value="' + escapeHtml(item.opsiA) + '" /></div>' +
+              '<div class="form-group"><label class="form-label">Pilihan B</label><input type="text" class="form-input" data-soal-field="opsiB" data-index="' + i + '" value="' + escapeHtml(item.opsiB) + '" /></div>' +
+              '<div class="form-group"><label class="form-label">Pilihan C</label><input type="text" class="form-input" data-soal-field="opsiC" data-index="' + i + '" value="' + escapeHtml(item.opsiC) + '" /></div>' +
+              '<div class="form-group"><label class="form-label">Pilihan D</label><input type="text" class="form-input" data-soal-field="opsiD" data-index="' + i + '" value="' + escapeHtml(item.opsiD) + '" /></div>' +
+            '</div>' +
+            '<div class="grid-2">' +
+              '<div class="form-group">' +
+                '<label class="form-label">Kunci Jawaban</label>' +
+                '<select class="form-select" data-soal-field="kunci" data-index="' + i + '">' +
+                  '<option value="A"' + (item.kunci === 'A' ? ' selected' : '') + '>A</option>' +
+                  '<option value="B"' + (item.kunci === 'B' ? ' selected' : '') + '>B</option>' +
+                  '<option value="C"' + (item.kunci === 'C' ? ' selected' : '') + '>C</option>' +
+                  '<option value="D"' + (item.kunci === 'D' ? ' selected' : '') + '>D</option>' +
+                '</select>' +
+              '</div>' +
+              '<div class="form-group">' +
+                '<label class="form-label">Bobot Skor</label>' +
+                '<input type="number" min="1" max="100" class="form-input" data-soal-field="skor" data-index="' + i + '" value="' + (item.skor || 10) + '" />' +
+              '</div>' +
+            '</div>';
+          } else {
+            html += '<div class="grid-3">' +
+              '<div class="form-group col-span-2">' +
+                '<label class="form-label">Kunci Jawaban / Pedoman Penskoran</label>' +
+                '<input type="text" class="form-input" data-soal-field="kunci" data-index="' + i + '" value="' + escapeHtml(item.kunci) + '" />' +
+              '</div>' +
+              '<div class="form-group">' +
+                '<label class="form-label">Bobot Skor</label>' +
+                '<input type="number" min="1" max="100" class="form-input" data-soal-field="skor" data-index="' + i + '" value="' + (item.skor || 20) + '" />' +
+              '</div>' +
+            '</div>';
+          }
+
+          html += '</div>';
+        }
+        container.innerHTML = html;
+      }
+
+      /* -----------------------------------------------------------------------
+         13. KOP SURAT OTOMATIS KOTA BEKASI, DUAL LOGO & PRATINJAU DOKUMEN A4
+         ----------------------------------------------------------------------- */
+      function buildKopSuratHtml() {
+        var kop = appState.kop;
+        var namaSekolah = (appState.sekolah.namaSekolah || 'SD NEGERI BEKASI JAYA I').toUpperCase();
+        var logoKiri = kop.logoKiri || DEFAULT_LOGO_BEKASI;
+        var isDual = kop.logoMode !== 'single';
+        var logoKanan = kop.logoKanan || DEFAULT_LOGO_SD;
+
+        var leftCell = '<td style="width: 72px; text-align: center; vertical-align: middle;">' +
+          '<img src="' + logoKiri + '" width="64" height="64" style="width: 64px; height: 64px; object-fit: contain;" alt="Logo Kota Bekasi" />' +
+        '</td>';
+
+        var centerCell = '<td style="text-align: center; vertical-align: middle; padding: 0 6px;">' +
+          '<div style="font-size: 13pt; font-weight: bold; letter-spacing: 0.5px; line-height: 1.2;">' + escapeHtml(kop.baris1) + '</div>' +
+          '<div style="font-size: 14pt; font-weight: bold; letter-spacing: 0.5px; line-height: 1.2;">' + escapeHtml(kop.baris2) + '</div>' +
+          '<div style="font-size: 15pt; font-weight: bold; letter-spacing: 0.4px; line-height: 1.25; margin-top: 1px;">' + escapeHtml(namaSekolah) + '</div>' +
+          '<div style="font-size: 9pt; font-style: italic; margin-top: 2px; line-height: 1.25;">' + escapeHtml(kop.alamat) + '</div>' +
+        '</td>';
+
+        var rightCell = isDual
+          ? '<td style="width: 72px; text-align: center; vertical-align: middle;">' +
+              '<img src="' + logoKanan + '" width="64" height="64" style="width: 64px; height: 64px; object-fit: contain;" alt="Logo SD" />' +
+            '</td>'
+          : '<td style="width: 24px;"></td>';
+
+        return '<table class="kop-table" style="width: 100%; border-collapse: collapse; border-bottom: 3.5pt double #000000; margin-bottom: 12px;">' +
+          '<tr>' + leftCell + centerCell + rightCell + '</tr>' +
+        '</table>';
+      }
+
+      function renderLiveKopPreview() {
+        var box = document.getElementById('liveKopPreviewBox');
+        if (box) {
+          box.innerHTML = buildKopSuratHtml();
+        }
+      }
+
+      function updateLogoPreviewWidgets() {
+        var imgKiri = document.getElementById('previewLogoKiri');
+        var imgKanan = document.getElementById('previewLogoKanan');
+        var noLogoLbl = document.getElementById('noLogoKananLabel');
+        var uploadKananLbl = document.getElementById('labelUploadLogoKanan');
+        var isDual = appState.kop.logoMode !== 'single';
+
+        if (imgKiri) imgKiri.src = appState.kop.logoKiri || DEFAULT_LOGO_BEKASI;
+
+        if (isDual) {
+          if (imgKanan) {
+            imgKanan.src = appState.kop.logoKanan || DEFAULT_LOGO_SD;
+            imgKanan.classList.remove('hidden');
+          }
+          if (noLogoLbl) noLogoLbl.classList.add('hidden');
+          if (uploadKananLbl) uploadKananLbl.style.opacity = '1';
+        } else {
+          if (imgKanan) imgKanan.classList.add('hidden');
+          if (noLogoLbl) noLogoLbl.classList.remove('hidden');
+          if (uploadKananLbl) uploadKananLbl.style.opacity = '0.5';
+        }
+      }
+
+      function buildCompleteDocumentHtml() {
+        var s = appState.sekolah;
+        var m = appState.modul;
+        var dimList = m.dimensiTerpilih || [];
+        var dimText = dimList.length > 0
+          ? dimList.map(function (d, idx) { return (idx + 1) + '. ' + escapeHtml(d); }).join('<br>')
+          : '<em>(Belum ada dimensi profil lulusan yang dipilih)</em>';
+
+        var html = '';
+
+        // ==================== HALAMAN UTAMA: MODUL AJAR ====================
+        html += buildKopSuratHtml();
+
+        html += '<div style="text-align: center; margin-bottom: 12px;">' +
+          '<div style="font-size: 13pt; font-weight: bold; text-decoration: underline;">MODUL AJAR KURIKULUM MERDEKA</div>' +
+          '<div style="font-size: 10.5pt; font-weight: bold; margin-top: 2px;">PENDEKATAN PEMBELAJARAN MENDALAM (DEEP LEARNING)</div>' +
+        '</div>';
+
+        // I. INFORMASI UMUM
+        html += '<div style="font-weight: bold; font-size: 11pt; margin: 10px 0 4px 0;">I. INFORMASI UMUM</div>';
+        html += '<table class="doc-table">' +
+          '<tr><th style="width: 30%;">Nama Penyusun</th><td style="width: 70%;">' + escapeHtml(s.namaGuru) + (s.nipGuru ? ' (NIP/NUPTK: ' + escapeHtml(s.nipGuru) + ')' : '') + '</td></tr>' +
+          '<tr><th>Satuan Pendidikan</th><td>' + escapeHtml(s.namaSekolah) + (s.npsn ? ' (NPSN: ' + escapeHtml(s.npsn) + ')' : '') + '</td></tr>' +
+          '<tr><th>Tahun Ajaran / Semester</th><td>' + escapeHtml(s.tahunAjaran) + ' / Semester ' + escapeHtml(s.semester) + '</td></tr>' +
+          '<tr><th>Kelas / Fase</th><td>' + escapeHtml(s.kelasFase) + '</td></tr>' +
+          '<tr><th>Mata Pelajaran</th><td><strong>' + escapeHtml(m.mapel) + '</strong></td></tr>' +
+          '<tr><th>Topik / Materi Pokok</th><td><strong>' + escapeHtml(m.topik) + '</strong></td></tr>' +
+          '<tr><th>Alokasi Waktu / Pertemuan</th><td>' + escapeHtml(m.alokasiWaktu) + ' (' + escapeHtml(m.pertemuan) + ')</td></tr>' +
+          '<tr><th>Model &amp; Moda Pembelajaran</th><td>' + escapeHtml(m.modelPembelajaran) + ' — ' + escapeHtml(m.moda) + '</td></tr>' +
+          '<tr><th>Target &amp; Jumlah Siswa</th><td>' + escapeHtml(m.targetSiswa) + ' (' + escapeHtml(m.jumlahSiswa) + ')</td></tr>' +
+          '<tr><th>Sarana &amp; Prasarana</th><td>' + nl2br(m.sarpras) + '</td></tr>' +
+          '<tr><th>8 Dimensi Profil Lulusan<br><span style="font-weight: normal; font-size: 9pt;">(Pembelajaran Mendalam)</span></th><td>' +
+            dimText +
+            (m.catatanDimensi ? '<div style="margin-top: 5px; padding-top: 4px; border-top: 1px dashed #94a3b8; font-size: 9.5pt;"><strong>Implementasi:</strong> ' + nl2br(m.catatanDimensi) + '</div>' : '') +
+          '</td></tr>' +
+        '</table>';
+
+        // II. KOMPONEN INTI
+        html += '<div style="font-weight: bold; font-size: 11pt; margin: 12px 0 4px 0;">II. KOMPONEN INTI</div>';
+        html += '<table class="doc-table">' +
+          '<tr><th style="width: 30%;">Elemen</th><td style="width: 70%;">' + nl2br(m.elemen) + '</td></tr>' +
+          '<tr><th>Capaian Pembelajaran (CP)</th><td>' + nl2br(m.cp) + '</td></tr>' +
+          '<tr><th>Tujuan Pembelajaran (TP)</th><td>' + nl2br(m.tp) + '</td></tr>' +
+          '<tr><th>Pemahaman Bermakna</th><td>' + nl2br(m.pemahamanBermakna) + '</td></tr>' +
+          '<tr><th>Pertanyaan Pemantik</th><td>' + nl2br(m.pertanyaanPemantik) + '</td></tr>' +
+        '</table>';
+
+        // III. LANGKAH-LANGKAH KEGIATAN PEMBELAJARAN
+        html += '<div style="font-weight: bold; font-size: 11pt; margin: 12px 0 4px 0;">III. LANGKAH-LANGKAH KEGIATAN PEMBELAJARAN</div>';
+        html += '<table class="doc-table">' +
+          '<tr><th style="width: 24%;">Tahap Kegiatan</th><th style="width: 62%;">Deskripsi Aktivitas Pembelajaran</th><th style="width: 14%; text-align: center;">Alokasi Waktu</th></tr>' +
+          '<tr><td><strong>1. Pendahuluan</strong></td><td>' + nl2br(m.kegiatanPendahuluan) + '</td><td style="text-align: center;">' + escapeHtml(m.waktuPendahuluan) + '</td></tr>' +
+          '<tr><td><strong>2. Kegiatan Inti</strong><br><span style="font-size: 9pt;">(' + escapeHtml(m.modelPembelajaran) + ')</span></td><td>' + nl2br(m.kegiatanInti) + '</td><td style="text-align: center;">' + escapeHtml(m.waktuInti) + '</td></tr>' +
+          '<tr><td><strong>3. Penutup</strong></td><td>' + nl2br(m.kegiatanPenutup) + '</td><td style="text-align: center;">' + escapeHtml(m.waktuPenutup) + '</td></tr>' +
+        '</table>';
+
+        // IV. ASESMEN, PENGAYAAN & REFLEKSI
+        html += '<div style="font-weight: bold; font-size: 11pt; margin: 12px 0 4px 0;">IV. ASESMEN, PENGAYAAN &amp; REFLEKSI</div>';
+        html += '<table class="doc-table">' +
+          '<tr><th style="width: 30%;">Asesmen Diagnostik (Awal)</th><td style="width: 70%;">' + nl2br(m.asesmenDiagnostik) + '</td></tr>' +
+          '<tr><th>Asesmen Formatif (Proses)</th><td>' + nl2br(m.asesmenFormatif) + '</td></tr>' +
+          '<tr><th>Asesmen Sumatif (Akhir)</th><td>' + nl2br(m.asesmenSumatif) + '</td></tr>' +
+          '<tr><th>Pengayaan &amp; Remedial</th><td>' + nl2br(m.pengayaanRemedial) + '</td></tr>' +
+          '<tr><th>Refleksi Guru &amp; Siswa</th><td>' + nl2br(m.refleksi) + '</td></tr>' +
+        '</table>';
+
+        // V. RUBRIK KKTP
+        if (appState.kktp && appState.kktp.length > 0) {
+          html += '<div style="font-weight: bold; font-size: 11pt; margin: 12px 0 4px 0;">V. RUBRIK KRITERIA KETERCAPAIAN TUJUAN PEMBELAJARAN (KKTP)</div>';
+          html += '<table class="doc-table">' +
+            '<tr>' +
+              '<th style="width: 20%;">Kriteria Penilaian</th>' +
+              '<th style="width: 20%;">Perlu Bimbingan (1)</th>' +
+              '<th style="width: 20%;">Cukup (2)</th>' +
+              '<th style="width: 20%;">Baik (3)</th>' +
+              '<th style="width: 20%;">Sangat Baik (4)</th>' +
+            '</tr>';
+          for (var k = 0; k < appState.kktp.length; k++) {
+            var r = appState.kktp[k];
+            html += '<tr>' +
+              '<td><strong>' + nl2br(r.kriteria) + '</strong></td>' +
+              '<td>' + nl2br(r.perluBimbingan) + '</td>' +
+              '<td>' + nl2br(r.cukup) + '</td>' +
+              '<td>' + nl2br(r.baik) + '</td>' +
+              '<td>' + nl2br(r.sangatBaik) + '</td>' +
+            '</tr>';
+          }
+          html += '</table>';
+        }
+
+        // BLOK TANDA TANGAN 2 KOLOM (KEPALA SEKOLAH & GURU KELAS)
+        html += '<table class="ttd-table">' +
+          '<tr>' +
+            '<td>' +
+              '<div>Mengetahui,</div>' +
+              '<div>Kepala ' + escapeHtml(s.namaSekolah) + '</div>' +
+              '<div style="height: 58px;"></div>' +
+              '<div style="font-weight: bold; text-decoration: underline;">' + escapeHtml(s.kepalaSekolah) + '</div>' +
+              '<div>NIP. ' + escapeHtml(s.nipKepalaSekolah || '-') + '</div>' +
+            '</td>' +
+            '<td>' +
+              '<div>' + escapeHtml(appState.kop.kotaTitimangsa || 'Kota Bekasi') + ', ' + escapeHtml(s.tanggalDokumen) + '</div>' +
+              '<div>Guru Kelas / Penyusun</div>' +
+              '<div style="height: 58px;"></div>' +
+              '<div style="font-weight: bold; text-decoration: underline;">' + escapeHtml(s.namaGuru) + '</div>' +
+              '<div>NIP/NUPTK. ' + escapeHtml(s.nipGuru || '-') + '</div>' +
+            '</td>' +
+          '</tr>' +
+        '</table>';
+
+        // ==================== LAMPIRAN 1: LKPD SISWA ====================
+        if (appState.lkpd && appState.lkpd.includeInPrint) {
+          html += '<div class="page-break"></div>';
+          html += buildKopSuratHtml();
+
+          html += '<div style="text-align: center; margin-bottom: 10px;">' +
+            '<div style="font-size: 12.5pt; font-weight: bold; text-decoration: underline;">LEMBAR KERJA PESERTA DIDIK (LKPD)</div>' +
+            '<div style="font-size: 11pt; font-weight: bold; margin-top: 2px;">' + escapeHtml(appState.lkpd.judul) + '</div>' +
+          '</div>';
+
+          var isKelompok = (appState.lkpd.tipePengerjaan || '').indexOf('Kelompok') !== -1;
+          html += '<table class="doc-table">' +
+            '<tr><th style="width: 24%;">Mata Pelajaran</th><td style="width: 36%;">' + escapeHtml(m.mapel) + '</td><th style="width: 18%;">Kelas / Fase</th><td style="width: 22%;">' + escapeHtml(s.kelasFase) + '</td></tr>' +
+            '<tr><th>Topik / Materi</th><td colspan="3">' + escapeHtml(m.topik) + '</td></tr>' +
+            (isKelompok
+              ? '<tr><th>Nama Kelompok</th><td colspan="3">..........................................................................................</td></tr>' +
+                '<tr><th>Anggota Kelompok</th><td colspan="3">1. ......................................... &nbsp;&nbsp; 4. .........................................<br>2. ......................................... &nbsp;&nbsp; 5. .........................................<br>3. ......................................... &nbsp;&nbsp; 6. .........................................</td></tr>'
+              : '<tr><th>Nama Siswa</th><td>.................................................</td><th>No. Absen</th><td>.....................</td></tr>') +
+          '</table>';
+
+          html += '<div style="border: 1px solid #000000; padding: 8px 10px; margin-bottom: 12px; background: #f8fafc;">' +
+            '<strong>Petunjuk Pengerjaan:</strong><br>' + nl2br(appState.lkpd.petunjuk) +
+          '</div>';
+
+          var blocks = appState.lkpd.blocks || [];
+          for (var bIdx = 0; bIdx < blocks.length; bIdx++) {
+            var blk = blocks[bIdx];
+            html += '<div class="avoid-break" style="margin-bottom: 14px;">' +
+              '<div style="font-weight: bold; margin-bottom: 6px;">' + nl2br(blk.title) + '</div>';
+
+            if (blk.type === 'uraian') {
+              var lineCount = Math.max(1, Math.min(8, Number(blk.lines) || 4));
+              for (var l = 0; l < lineCount; l++) {
+                html += '<div style="border-bottom: 1px dotted #000000; height: 22px; margin-bottom: 2px;"></div>';
+              }
+            } else if (blk.type === 'tabel') {
+              var cols = (blk.columns || 'No, Pengamatan, Hasil').split(',');
+              var rowCount = Math.max(1, Math.min(10, Number(blk.rows) || 3));
+              html += '<table class="doc-table"><tr>';
+              for (var c = 0; c < cols.length; c++) {
+                html += '<th>' + escapeHtml(cols[c].trim()) + '</th>';
+              }
+              html += '</tr>';
+              for (var rr = 0; rr < rowCount; rr++) {
+                html += '<tr>';
+                for (var cc = 0; cc < cols.length; cc++) {
+                  html += '<td style="height: 26px;">' + (cc === 0 && cols[0].trim().toLowerCase() === 'no' ? (rr + 1) : '') + '</td>';
+                }
+                html += '</tr>';
+              }
+              html += '</table>';
+            } else if (blk.type === 'gambar') {
+              var boxH = Math.max(60, Math.min(300, Number(blk.height) || 120));
+              html += '<div style="border: 1.5px solid #000000; height: ' + boxH + 'px; width: 100%;"></div>';
+            }
+            html += '</div>';
+          }
+        }
+
+        // ==================== LAMPIRAN 2: SOAL EVALUASI & KUNCI ====================
+        if (appState.evaluasi && appState.evaluasi.includeInPrint && appState.evaluasi.soal && appState.evaluasi.soal.length > 0) {
+          html += '<div class="page-break"></div>';
+          html += buildKopSuratHtml();
+
+          html += '<div style="text-align: center; margin-bottom: 10px;">' +
+            '<div style="font-size: 12pt; font-weight: bold; text-decoration: underline;">' + escapeHtml(appState.evaluasi.judul) + '</div>' +
+          '</div>';
+
+          html += '<table class="doc-table">' +
+            '<tr><th style="width: 20%;">Nama Siswa</th><td style="width: 42%;">......................................................</td><th style="width: 18%;">Mata Pelajaran</th><td style="width: 20%;">' + escapeHtml(m.mapel) + '</td></tr>' +
+            '<tr><th>Kelas / No. Absen</th><td>' + escapeHtml(s.kelasFase) + ' / No: .......</td><th>Nilai</th><td></td></tr>' +
+          '</table>';
+
+          html += '<div style="margin-bottom: 10px; font-style: italic;"><strong>Petunjuk:</strong> ' + escapeHtml(appState.evaluasi.petunjuk) + '</div>';
+
+          var soalList = appState.evaluasi.soal;
+          for (var q = 0; q < soalList.length; q++) {
+            var sq = soalList[q];
+            html += '<div class="avoid-break" style="margin-bottom: 10px;">' +
+              '<div><strong>' + (q + 1) + '.</strong> ' + nl2br(sq.pertanyaan) + ' <span style="font-size: 9pt; color: #475569;">(Skor: ' + (sq.skor || 10) + ')</span></div>';
+            if (sq.type === 'pg') {
+              html += '<table style="width: 100%; border-collapse: collapse; margin-left: 16px; margin-top: 3px;">' +
+                '<tr><td style="border: none; width: 50%; padding: 1px 4px;">A. ' + escapeHtml(sq.opsiA) + '</td><td style="border: none; width: 50%; padding: 1px 4px;">C. ' + escapeHtml(sq.opsiC) + '</td></tr>' +
+                '<tr><td style="border: none; padding: 1px 4px;">B. ' + escapeHtml(sq.opsiB) + '</td><td style="border: none; padding: 1px 4px;">D. ' + escapeHtml(sq.opsiD) + '</td></tr>' +
+              '</table>';
+            } else {
+              html += '<div style="margin-left: 16px; margin-top: 4px;">' +
+                '<div style="border-bottom: 1px dotted #000000; height: 20px;"></div>' +
+                '<div style="border-bottom: 1px dotted #000000; height: 20px;"></div>' +
+              '</div>';
+            }
+            html += '</div>';
+          }
+
+          // Kunci Jawaban & Pedoman Penskoran
+          html += '<div class="avoid-break" style="margin-top: 18px; border-top: 1.5px solid #000000; padding-top: 8px;">' +
+            '<div style="font-weight: bold; margin-bottom: 6px;">KUNCI JAWABAN &amp; PEDOMAN PENSKORAN (PEGANGAN GURU)</div>' +
+            '<table class="doc-table">' +
+              '<tr><th style="width: 10%; text-align: center;">No</th><th style="width: 75%;">Kunci Jawaban</th><th style="width: 15%; text-align: center;">Skor</th></tr>';
+          var sumSkor = 0;
+          for (var kj = 0; kj < soalList.length; kj++) {
+            var itemKj = soalList[kj];
+            sumSkor += Number(itemKj.skor) || 0;
+            html += '<tr>' +
+              '<td style="text-align: center;">' + (kj + 1) + '</td>' +
+              '<td>' + escapeHtml(itemKj.kunci) + '</td>' +
+              '<td style="text-align: center;">' + (itemKj.skor || 10) + '</td>' +
+            '</tr>';
+          }
+          html += '<tr><th colspan="2" style="text-align: right;">Total Skor Maksimal</th><th style="text-align: center;">' + sumSkor + '</th></tr>' +
+            '</table>' +
+          '</div>';
+        }
+
+        return html;
+      }
+
+      function renderPrintPreview() {
+        var area = document.getElementById('printDocumentArea');
+        if (area) {
+          area.innerHTML = buildCompleteDocumentHtml();
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+         14. EKSPOR KE MICROSOFT WORD (.DOC) LENGKAP DENGAN LOGO & TABEL RAPI
+         ----------------------------------------------------------------------- */
+      function exportToWordDoc() {
+        try {
+          var docBody = buildCompleteDocumentHtml();
+          var safeTopik = (appState.modul.topik || 'Modul_Ajar_SD')
+            .replace(/[^a-zA-Z0-9\s_-]/g, '')
+            .trim()
+            .replace(/\s+/g, '_')
+            .substring(0, 45);
+          var fileName = 'Modul_Ajar_' + (safeTopik || 'SD') + '_Nurjanah_SPd.doc';
+
+          var wordHtml =
+            '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+            'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+            'xmlns="http://www.w3.org/TR/REC-html40">' +
+            '<head><meta charset="utf-8"><title>' + escapeHtml(appState.modul.topik) + '</title>' +
+            '<style>' +
+            '@page Section1 { size: 595.3pt 841.9pt; margin: 36pt 42pt 36pt 42pt; }' +
+            'div.Section1 { page: Section1; font-family: "Times New Roman", Times, serif; font-size: 11pt; color: #000000; }' +
+            'table.doc-table { width: 100%; border-collapse: collapse; margin-bottom: 10pt; font-size: 10.5pt; }' +
+            'table.doc-table th, table.doc-table td { border: 1pt solid #000000; padding: 4pt 6pt; vertical-align: top; text-align: left; }' +
+            'table.doc-table th { background-color: #f1f5f9; font-weight: bold; }' +
+            'table.ttd-table { width: 100%; border-collapse: collapse; margin-top: 16pt; font-size: 10.5pt; }' +
+            'table.ttd-table td { border: none; width: 50%; text-align: center; vertical-align: top; }' +
+            '.page-break { page-break-before: always; }' +
+            '</style></head>' +
+            '<body><div class="Section1">' + docBody + '</div></body></html>';
+
+          var blob = new Blob(['\ufeff', wordHtml], { type: 'application/msword;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement('a');
+          link.href = url;
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+
+          showToast('File Microsoft Word (' + fileName + ') berhasil diunduh!');
+        } catch (err) {
+          showToast('Gagal mengunduh file Word. Silakan gunakan tombol Cetak / Simpan PDF.', 'warn');
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+         15. UNGGAH LOGO SEKOLAH (KOMPRESI OTOMATIS AGAR RINGAN DI STORAGE)
+         ----------------------------------------------------------------------- */
+      function handleLogoFileUpload(file, side) {
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var img = new Image();
+          img.onload = function () {
+            var maxDim = 220;
+            var w = img.width;
+            var h = img.height;
+            if (w > maxDim || h > maxDim) {
+              if (w > h) {
+                h = Math.round((h * maxDim) / w);
+                w = maxDim;
+              } else {
+                w = Math.round((w * maxDim) / h);
+                h = maxDim;
+              }
+            }
+            var canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            var compressedDataUrl = canvas.toDataURL('image/png');
+
+            if (side === 'kiri') {
+              appState.kop.logoKiri = compressedDataUrl;
+              var headerImg = document.getElementById('headerLogoImg');
+              if (headerImg) headerImg.src = compressedDataUrl;
+            } else {
+              appState.kop.logoKanan = compressedDataUrl;
+              appState.kop.logoMode = 'dual';
+              setVal('logoModeSelect', 'dual');
+            }
+            saveState();
+            updateLogoPreviewWidgets();
+            renderLiveKopPreview();
+            showToast('Logo ' + (side === 'kiri' ? 'Kiri' : 'Kanan') + ' berhasil diperbarui!');
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      /* -----------------------------------------------------------------------
+         16. MANAJEMEN ARSIP LOKAL & BACKUP/RESTORE JSON
+         ----------------------------------------------------------------------- */
+      function renderArchiveList() {
+        var container = document.getElementById('archiveListContainer');
+        if (!container) return;
+        var archives = appState.archives || [];
+        if (archives.length === 0) {
+          container.innerHTML = '<div class="col-span-2" style="padding: 16px; text-align: center; color: #64748b; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">Belum ada modul yang disimpan di arsip lokal. Klik <strong>"+ Simpan ke Arsip Lokal"</strong> untuk menyimpan perangkat ajar saat ini.</div>';
+          return;
+        }
+
+        var html = '';
+        for (var i = 0; i < archives.length; i++) {
+          var arc = archives[i];
+          html += '<div class="sub-box" style="margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">' +
+            '<div>' +
+              '<div style="font-weight: 700; font-size: 0.88rem; color: var(--text-main);">' + escapeHtml(arc.topik || 'Tanpa Judul') + '</div>' +
+              '<div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">' + escapeHtml(arc.mapel) + ' • ' + escapeHtml(arc.kelasFase) + '</div>' +
+              '<div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Disimpan: ' + escapeHtml(arc.savedAt) + '</div>' +
+            '</div>' +
+            '<div class="btn-group">' +
+              '<button type="button" class="btn btn-primary btn-sm" data-action="archive-load" data-index="' + i + '">Muat Modul Ini</button>' +
+              '<button type="button" class="btn btn-soft-danger btn-sm" data-action="archive-del" data-index="' + i + '">Hapus</button>' +
+            '</div>' +
+          '</div>';
+        }
+        container.innerHTML = html;
+      }
+
+      function saveCurrentToArchive() {
+        var snapshot = {
+          id: Date.now(),
+          savedAt: getFormattedIndonesianDate(),
+          mapel: appState.modul.mapel,
+          topik: appState.modul.topik || 'Modul Tanpa Judul',
+          kelasFase: appState.sekolah.kelasFase,
+          modul: JSON.parse(JSON.stringify(appState.modul)),
+          kktp: JSON.parse(JSON.stringify(appState.kktp)),
+          lkpd: JSON.parse(JSON.stringify(appState.lkpd)),
+          evaluasi: JSON.parse(JSON.stringify(appState.evaluasi))
+        };
+        appState.archives.unshift(snapshot);
+        saveState();
+        renderArchiveList();
+        showToast('Modul "' + snapshot.topik + '" berhasil disimpan ke Arsip Lokal!');
+      }
+
+      function exportBackupJson() {
+        try {
+          var jsonStr = JSON.stringify(appState, null, 2);
+          var blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement('a');
+          link.href = url;
+          link.download = 'Backup_Modul_Ajar_Nurjanah_SPd.json';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+          showToast('File Backup JSON berhasil diunduh!');
+        } catch (err) {
+          showToast('Gagal mengekspor Backup JSON.', 'warn');
+        }
+      }
+
+      function importRestoreJson(file) {
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            var parsed = JSON.parse(e.target.result);
+            if (!parsed || !parsed.modul || !parsed.sekolah) {
+              showToast('Format file JSON tidak sesuai struktur aplikasi.', 'warn');
+              return;
+            }
+            var def = createDefaultState();
+            appState = {
+              kop: Object.assign({}, def.kop, parsed.kop || {}),
+              sekolah: Object.assign({}, def.sekolah, parsed.sekolah || {}),
+              modul: Object.assign({}, def.modul, parsed.modul || {}),
+              kktp: Array.isArray(parsed.kktp) ? parsed.kktp : def.kktp,
+              lkpd: Object.assign({}, def.lkpd, parsed.lkpd || {}),
+              evaluasi: Object.assign({}, def.evaluasi, parsed.evaluasi || {}),
+              archives: Array.isArray(parsed.archives) ? parsed.archives : []
+            };
+            saveState();
+            populateAllForms();
+            showToast('Data cadangan JSON berhasil dipulihkan (Restore)!');
+          } catch (err) {
+            showToast('File JSON rusak atau tidak dapat dibaca.', 'warn');
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      /* -----------------------------------------------------------------------
+         17. PEMASANGAN EVENT LISTENER & DELEGATION (100% RESPONSIF)
+         ----------------------------------------------------------------------- */
+      function bindInput(id, onUpdate) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var eventName = (el.tagName === 'SELECT' || el.type === 'checkbox') ? 'change' : 'input';
+        el.addEventListener(eventName, function () {
+          onUpdate(el);
+          saveState();
+        });
+      }
+
+      function initEventListeners() {
+        // Navigasi Tab
+        var tabNav = document.getElementById('mainTabNav');
+        if (tabNav) {
+          tabNav.addEventListener('click', function (e) {
+            var btn = e.target.closest('.tab-btn');
+            if (btn) {
+              switchTab(btn.getAttribute('data-tab'));
+            }
+          });
+        }
+
+        document.getElementById('btnQuickPreview').addEventListener('click', function () {
+          switchTab('tab-cetak');
+        });
+
+        document.getElementById('btnJumpSekolah').addEventListener('click', function () {
+          switchTab('tab-sekolah');
+        });
+
+        document.getElementById('btnEditKopFromPrint').addEventListener('click', function () {
+          switchTab('tab-sekolah');
+          var kopSec = document.getElementById('kopEditorSection');
+          if (kopSec) kopSec.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Modal Konfirmasi
+        document.getElementById('confirmCancelBtn').addEventListener('click', closeConfirmModal);
+        document.getElementById('confirmOkBtn').addEventListener('click', function () {
+          var cb = pendingConfirmCallback;
+          closeConfirmModal();
+          if (typeof cb === 'function') cb();
+        });
+
+        // Tombol Susun Otomatis 100% Offline
+        document.getElementById('btnAutoGenerateAll').addEventListener('click', generateFullOfflinePackage);
+        document.getElementById('btnInsertSyntaxOnly').addEventListener('click', insertSyntaxOnlyOffline);
+
+        // Input Tab 1: Modul Ajar
+        var mapelSelect = document.getElementById('mapelSelect');
+        var mapelCustomInput = document.getElementById('mapelCustomInput');
+        mapelSelect.addEventListener('change', function () {
+          if (mapelSelect.value === '__CUSTOM__') {
+            mapelCustomInput.classList.remove('hidden');
+            mapelCustomInput.focus();
+          } else {
+            mapelCustomInput.classList.add('hidden');
+            appState.modul.mapel = mapelSelect.value;
+            saveState();
+          }
+        });
+        mapelCustomInput.addEventListener('input', function () {
+          appState.modul.mapel = mapelCustomInput.value;
+          saveState();
+        });
+
+        bindInput('modulTopik', function (el) { appState.modul.topik = el.value; });
+        bindInput('modulModel', function (el) { appState.modul.modelPembelajaran = el.value; });
+        bindInput('modulAlokasi', function (el) { appState.modul.alokasiWaktu = el.value; });
+        bindInput('modulPertemuan', function (el) { appState.modul.pertemuan = el.value; });
+        bindInput('modulModa', function (el) { appState.modul.moda = el.value; });
+        bindInput('modulJumlahSiswa', function (el) { appState.modul.jumlahSiswa = el.value; });
+        bindInput('modulTarget', function (el) { appState.modul.targetSiswa = el.value; });
+        bindInput('modulSarpras', function (el) { appState.modul.sarpras = el.value; });
+        bindInput('modulCatatanDimensi', function (el) { appState.modul.catatanDimensi = el.value; });
+        bindInput('modulElemen', function (el) { appState.modul.elemen = el.value; });
+        bindInput('modulPemahaman', function (el) { appState.modul.pemahamanBermakna = el.value; });
+        bindInput('modulCP', function (el) { appState.modul.cp = el.value; });
+        bindInput('modulTP', function (el) { appState.modul.tp = el.value; });
+        bindInput('modulPemantik', function (el) { appState.modul.pertanyaanPemantik = el.value; });
+        bindInput('modulWaktuPendahuluan', function (el) { appState.modul.waktuPendahuluan = el.value; });
+        bindInput('modulPendahuluan', function (el) { appState.modul.kegiatanPendahuluan = el.value; });
+        bindInput('modulWaktuInti', function (el) { appState.modul.waktuInti = el.value; });
+        bindInput('modulInti', function (el) { appState.modul.kegiatanInti = el.value; });
+        bindInput('modulWaktuPenutup', function (el) { appState.modul.waktuPenutup = el.value; });
+        bindInput('modulPenutup', function (el) { appState.modul.kegiatanPenutup = el.value; });
+        bindInput('modulAsesmenDiagnostik', function (el) { appState.modul.asesmenDiagnostik = el.value; });
+        bindInput('modulAsesmenFormatif', function (el) { appState.modul.asesmenFormatif = el.value; });
+        bindInput('modulAsesmenSumatif', function (el) { appState.modul.asesmenSumatif = el.value; });
+        bindInput('modulPengayaan', function (el) { appState.modul.pengayaanRemedial = el.value; });
+        bindInput('modulRefleksi', function (el) { appState.modul.refleksi = el.value; });
+
+        // 8 Dimensi Profil Lulusan Event Delegation
+        document.getElementById('dimensiGrid').addEventListener('click', function (e) {
+          var card = e.target.closest('.dimensi-card');
+          if (card) {
+            toggleDimensi(card.getAttribute('data-dimensi-id'));
+          }
+        });
+
+        document.getElementById('btnSelectAllDimensi').addEventListener('click', function () {
+          appState.modul.dimensiTerpilih = DELAPAN_DIMENSI.map(function (d) { return d.id; });
+          saveState();
+          renderDimensiGrid();
+          showToast('Seluruh 8 Dimensi Profil Lulusan dipilih.');
+        });
+
+        document.getElementById('btnResetDimensi').addEventListener('click', function () {
+          appState.modul.dimensiTerpilih = [];
+          saveState();
+          renderDimensiGrid();
+          showToast('Pilihan dimensi profil lulusan direset.', 'info');
+        });
+
+        // KKTP Dinamis
+        document.getElementById('btnAddKktp').addEventListener('click', function () {
+          appState.kktp.push({
+            kriteria: 'Kriteria Penilaian Baru',
+            perluBimbingan: 'Belum memenuhi kriteria minimal.',
+            cukup: 'Memenuhi sebagian kriteria dengan bimbingan.',
+            baik: 'Memenuhi kriteria secara mandiri dan tepat.',
+            sangatBaik: 'Melampaui kriteria dengan sangat rinci dan percaya diri.'
+          });
+          saveState();
+          renderKktpList();
+          showToast('Baris kriteria KKTP ditambahkan.');
+        });
+
+        var kktpContainer = document.getElementById('kktpListContainer');
+        kktpContainer.addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-action="delete-kktp"]');
+          if (btn) {
+            var idx = Number(btn.getAttribute('data-index'));
+            appState.kktp.splice(idx, 1);
+            saveState();
+            renderKktpList();
+            showToast('Baris kriteria KKTP dihapus.', 'info');
+          }
+        });
+        kktpContainer.addEventListener('input', function (e) {
+          var field = e.target.getAttribute('data-kktp-field');
+          if (field) {
+            var idx = Number(e.target.getAttribute('data-index'));
+            if (appState.kktp[idx]) {
+              appState.kktp[idx][field] = e.target.value;
+              saveState();
+            }
+          }
+        });
+
+        // Tab 2: LKPD
+        bindInput('lkpdIncludePrint', function (el) { appState.lkpd.includeInPrint = el.checked; });
+        bindInput('lkpdJudul', function (el) { appState.lkpd.judul = el.value; });
+        bindInput('lkpdTipe', function (el) { appState.lkpd.tipePengerjaan = el.value; });
+        bindInput('lkpdPetunjuk', function (el) { appState.lkpd.petunjuk = el.value; });
+
+        document.getElementById('btnAddLkpdUraian').addEventListener('click', function () {
+          appState.lkpd.blocks.push({
+            type: 'uraian',
+            title: 'Pertanyaan Pengamatan: Tuliskan jawaban berdasarkan hasil diskusimu!',
+            lines: 4
+          });
+          saveState();
+          renderLkpdBlocks();
+          showToast('Blok Pertanyaan Uraian ditambahkan ke LKPD.');
+        });
+
+        document.getElementById('btnAddLkpdTabel').addEventListener('click', function () {
+          appState.lkpd.blocks.push({
+            type: 'tabel',
+            title: 'Tabel Pengamatan / Klasifikasi Hasil Kegiatan',
+            columns: 'No, Objek yang Diamati, Hasil Pengamatan, Keterangan',
+            rows: 3
+          });
+          saveState();
+          renderLkpdBlocks();
+          showToast('Blok Tabel Pengamatan ditambahkan ke LKPD.');
+        });
+
+        document.getElementById('btnAddLkpdGambar').addEventListener('click', function () {
+          appState.lkpd.blocks.push({
+            type: 'gambar',
+            title: 'Gambarkan sketsa atau peta konsep hasil pengamatanmu pada kotak berikut!',
+            height: 120
+          });
+          saveState();
+          renderLkpdBlocks();
+          showToast('Blok Kotak Gambar ditambahkan ke LKPD.');
+        });
+
+        var lkpdContainer = document.getElementById('lkpdBlocksContainer');
+        lkpdContainer.addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-action]');
+          if (!btn) return;
+          var action = btn.getAttribute('data-action');
+          var idx = Number(btn.getAttribute('data-index'));
+          var blocks = appState.lkpd.blocks;
+          if (action === 'lkpd-up' && idx > 0) {
+            var tmp = blocks[idx - 1];
+            blocks[idx - 1] = blocks[idx];
+            blocks[idx] = tmp;
+          } else if (action === 'lkpd-down' && idx < blocks.length - 1) {
+            var tmp2 = blocks[idx + 1];
+            blocks[idx + 1] = blocks[idx];
+            blocks[idx] = tmp2;
+          } else if (action === 'lkpd-del') {
+            blocks.splice(idx, 1);
+            showToast('Blok LKPD dihapus.', 'info');
+          }
+          saveState();
+          renderLkpdBlocks();
+        });
+        lkpdContainer.addEventListener('input', function (e) {
+          var field = e.target.getAttribute('data-lkpd-field');
+          if (field) {
+            var idx = Number(e.target.getAttribute('data-index'));
+            if (appState.lkpd.blocks[idx]) {
+              appState.lkpd.blocks[idx][field] = e.target.value;
+              saveState();
+            }
+          }
+        });
+
+        // Tab 3: Evaluasi
+        bindInput('evalIncludePrint', function (el) { appState.evaluasi.includeInPrint = el.checked; });
+        bindInput('evalJudul', function (el) { appState.evaluasi.judul = el.value; });
+        bindInput('evalPetunjuk', function (el) { appState.evaluasi.petunjuk = el.value; });
+
+        document.getElementById('btnAddSoalPG').addEventListener('click', function () {
+          appState.evaluasi.soal.push({
+            type: 'pg',
+            pertanyaan: 'Tuliskan pertanyaan pilihan ganda di sini...',
+            opsiA: 'Pilihan jawaban A',
+            opsiB: 'Pilihan jawaban B',
+            opsiC: 'Pilihan jawaban C',
+            opsiD: 'Pilihan jawaban D',
+            kunci: 'A',
+            skor: 20
+          });
+          saveState();
+          renderSoalList();
+          showToast('Soal Pilihan Ganda ditambahkan.');
+        });
+
+        document.getElementById('btnAddSoalUraian').addEventListener('click', function () {
+          appState.evaluasi.soal.push({
+            type: 'uraian',
+            pertanyaan: 'Tuliskan pertanyaan isian/uraian di sini...',
+            kunci: 'Tuliskan pedoman kunci jawaban di sini...',
+            skor: 30,
+            lines: 3
+          });
+          saveState();
+          renderSoalList();
+          showToast('Soal Isian / Uraian ditambahkan.');
+        });
+
+        var soalContainer = document.getElementById('soalListContainer');
+        soalContainer.addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-action]');
+          if (!btn) return;
+          var action = btn.getAttribute('data-action');
+          var idx = Number(btn.getAttribute('data-index'));
+          var list = appState.evaluasi.soal;
+          if (action === 'soal-up' && idx > 0) {
+            var tmp = list[idx - 1];
+            list[idx - 1] = list[idx];
+            list[idx] = tmp;
+          } else if (action === 'soal-down' && idx < list.length - 1) {
+            var tmp2 = list[idx + 1];
+            list[idx + 1] = list[idx];
+            list[idx] = tmp2;
+          } else if (action === 'soal-del') {
+            list.splice(idx, 1);
+            showToast('Butir soal dihapus.', 'info');
+          }
+          saveState();
+          renderSoalList();
+        });
+        soalContainer.addEventListener('input', handleSoalFieldUpdate);
+        soalContainer.addEventListener('change', handleSoalFieldUpdate);
+
+        function handleSoalFieldUpdate(e) {
+          var field = e.target.getAttribute('data-soal-field');
+          if (field) {
+            var idx = Number(e.target.getAttribute('data-index'));
+            if (appState.evaluasi.soal[idx]) {
+              appState.evaluasi.soal[idx][field] = e.target.value;
+              saveState();
+              if (field === 'skor') {
+                renderSoalList();
+              }
+            }
+          }
+        }
+
+        // Tab 4: Cetak & Ekspor Word
+        document.getElementById('btnExportWord').addEventListener('click', exportToWordDoc);
+        document.getElementById('btnPrintPdf').addEventListener('click', function () {
+          renderPrintPreview();
+          window.print();
+        });
+
+        // Tab 5: Kop Surat, Identitas Sekolah & Arsip
+        bindInput('kopBaris1', function (el) { appState.kop.baris1 = el.value; renderLiveKopPreview(); });
+        bindInput('kopBaris2', function (el) { appState.kop.baris2 = el.value; renderLiveKopPreview(); });
+        bindInput('kopKotaTitimangsa', function (el) { appState.kop.kotaTitimangsa = el.value; });
+        bindInput('kopAlamat', function (el) { appState.kop.alamat = el.value; renderLiveKopPreview(); });
+
+        function syncSchoolNameInputs(val) {
+          appState.sekolah.namaSekolah = val;
+          setVal('sekolahNama', val);
+          setVal('sekolahNamaKop', val);
+          saveState();
+          renderLiveKopPreview();
+        }
+        document.getElementById('sekolahNamaKop').addEventListener('input', function (e) { syncSchoolNameInputs(e.target.value); });
+        document.getElementById('sekolahNama').addEventListener('input', function (e) { syncSchoolNameInputs(e.target.value); });
+
+        bindInput('sekolahNpsn', function (el) { appState.sekolah.npsn = el.value; });
+        bindInput('sekolahKecamatan', function (el) { appState.sekolah.kecamatan = el.value; });
+        bindInput('sekolahKepsek', function (el) { appState.sekolah.kepalaSekolah = el.value; });
+        bindInput('sekolahNipKepsek', function (el) { appState.sekolah.nipKepalaSekolah = el.value; });
+        bindInput('sekolahTanggal', function (el) { appState.sekolah.tanggalDokumen = el.value; });
+        bindInput('sekolahGuru', function (el) { appState.sekolah.namaGuru = el.value; });
+        bindInput('sekolahNipGuru', function (el) { appState.sekolah.nipGuru = el.value; });
+        bindInput('sekolahKelasFase', function (el) { appState.sekolah.kelasFase = el.value; });
+        bindInput('sekolahSemester', function (el) { appState.sekolah.semester = el.value; });
+        bindInput('sekolahTahunAjaran', function (el) { appState.sekolah.tahunAjaran = el.value; });
+
+        document.getElementById('btnSetTodayDate').addEventListener('click', function () {
+          var today = getFormattedIndonesianDate();
+          appState.sekolah.tanggalDokumen = today;
+          setVal('sekolahTanggal', today);
+          saveState();
+          showToast('Tanggal dokumen diperbarui ke hari ini (' + today + ').');
+        });
+
+        document.getElementById('logoModeSelect').addEventListener('change', function (e) {
+          appState.kop.logoMode = e.target.value;
+          saveState();
+          updateLogoPreviewWidgets();
+          renderLiveKopPreview();
+          showToast('Tampilan logo kop surat diperbarui.');
+        });
+
+        document.getElementById('inputUploadLogoKiri').addEventListener('change', function (e) {
+          if (e.target.files && e.target.files[0]) {
+            handleLogoFileUpload(e.target.files[0], 'kiri');
+          }
+        });
+
+        document.getElementById('inputUploadLogoKanan').addEventListener('change', function (e) {
+          if (e.target.files && e.target.files[0]) {
+            handleLogoFileUpload(e.target.files[0], 'kanan');
+          }
+        });
+
+        document.getElementById('btnResetLogoKiri').addEventListener('click', function () {
+          appState.kop.logoKiri = DEFAULT_LOGO_BEKASI;
+          var headerImg = document.getElementById('headerLogoImg');
+          if (headerImg) headerImg.src = DEFAULT_LOGO_BEKASI;
+          saveState();
+          updateLogoPreviewWidgets();
+          renderLiveKopPreview();
+          showToast('Logo Kiri dikembalikan ke Lambang Kota Bekasi bawaan.');
+        });
+
+        document.getElementById('btnResetLogoKanan').addEventListener('click', function () {
+          appState.kop.logoKanan = DEFAULT_LOGO_SD;
+          appState.kop.logoMode = 'dual';
+          setVal('logoModeSelect', 'dual');
+          saveState();
+          updateLogoPreviewWidgets();
+          renderLiveKopPreview();
+          showToast('Logo Kanan dikembalikan ke Logo SD bawaan.');
+        });
+
+        document.getElementById('btnResetKopBekasi').addEventListener('click', function () {
+          openConfirmModal(
+            'Reset Standar Kop Kota Bekasi',
+            'Teks Kop Surat dan Dual Logo akan dikembalikan ke format standar Pemerintah Kota Bekasi & SD. Lanjutkan?',
+            function () {
+              appState.kop.baris1 = 'PEMERINTAH KOTA BEKASI';
+              appState.kop.baris2 = 'DINAS PENDIDIKAN';
+              appState.kop.alamat = 'Jl. KH. Agus Salim No. 45, Kec. Bekasi Timur, Kota Bekasi, Jawa Barat • Email: sdnbekasijaya1@bekasikota.go.id';
+              appState.kop.kotaTitimangsa = 'Kota Bekasi';
+              appState.kop.logoKiri = DEFAULT_LOGO_BEKASI;
+              appState.kop.logoKanan = DEFAULT_LOGO_SD;
+              appState.kop.logoMode = 'dual';
+              saveState();
+              populateAllForms();
+              showToast('Kop Surat standar Pemerintah Kota Bekasi dipulihkan.');
+            }
+          );
+        });
+
+        // Arsip & Cadangan
+        document.getElementById('btnSaveArchive').addEventListener('click', saveCurrentToArchive);
+        document.getElementById('btnBackupJson').addEventListener('click', exportBackupJson);
+        document.getElementById('inputRestoreJson').addEventListener('change', function (e) {
+          if (e.target.files && e.target.files[0]) {
+            importRestoreJson(e.target.files[0]);
+            e.target.value = '';
+          }
+        });
+
+        document.getElementById('btnLoadSampleData').addEventListener('click', function () {
+          openConfirmModal(
+            'Muat Ulang Data Contoh IPAS Kelas 4',
+            'Formulir aktif akan diisi ulang dengan contoh lengkap IPAS Kelas 4 (Topik Transformasi Energi di SD Negeri Bekasi Jaya I). Lanjutkan?',
+            function () {
+              var keptArchives = appState.archives || [];
+              appState = createDefaultState();
+              appState.archives = keptArchives;
+              saveState();
+              populateAllForms();
+              showToast('Data contoh IPAS Kelas 4 berhasil dimuat!');
+            }
+          );
+        });
+
+        document.getElementById('btnClearForm').addEventListener('click', function () {
+          openConfirmModal(
+            'Kosongkan Formulir (Mulai Modul Baru)',
+            'Isian materi modul ajar, LKPD, dan soal evaluasi akan dikosongkan untuk membuat perangkat baru (Identitas Sekolah, Kop Surat Kota Bekasi & Arsip tetap aman). Lanjutkan?',
+            function () {
+              appState.modul.topik = '';
+              appState.modul.elemen = '';
+              appState.modul.cp = '';
+              appState.modul.tp = '';
+              appState.modul.pemahamanBermakna = '';
+              appState.modul.pertanyaanPemantik = '';
+              appState.modul.kegiatanPendahuluan = '';
+              appState.modul.kegiatanInti = '';
+              appState.modul.kegiatanPenutup = '';
+              appState.modul.asesmenDiagnostik = '';
+              appState.modul.asesmenFormatif = '';
+              appState.modul.asesmenSumatif = '';
+              appState.modul.pengayaanRemedial = '';
+              appState.modul.refleksi = '';
+              appState.modul.catatanDimensi = '';
+              appState.lkpd.judul = '';
+              appState.lkpd.petunjuk = '';
+              appState.lkpd.blocks = [];
+              appState.evaluasi.soal = [];
+              saveState();
+              populateAllForms();
+              switchTab('tab-modul');
+              showToast('Formulir dikosongkan. Silakan isi topik baru atau klik Susun Otomatis!', 'info');
+            }
+          );
+        });
+
+        document.getElementById('archiveListContainer').addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-action]');
+          if (!btn) return;
+          var action = btn.getAttribute('data-action');
+          var idx = Number(btn.getAttribute('data-index'));
+          var arc = appState.archives[idx];
+          if (!arc) return;
+
+          if (action === 'archive-load') {
+            openConfirmModal(
+              'Muat Modul dari Arsip',
+              'Muat modul "' + arc.topik + '" ke editor aktif? Pastikan perubahan saat ini sudah disimpan bila perlu.',
+              function () {
+                appState.modul = JSON.parse(JSON.stringify(arc.modul));
+                appState.kktp = JSON.parse(JSON.stringify(arc.kktp || []));
+                appState.lkpd = JSON.parse(JSON.stringify(arc.lkpd));
+                appState.evaluasi = JSON.parse(JSON.stringify(arc.evaluasi));
+                if (arc.kelasFase) appState.sekolah.kelasFase = arc.kelasFase;
+                saveState();
+                populateAllForms();
+                switchTab('tab-modul');
+                showToast('Modul "' + arc.topik + '" berhasil dimuat!');
+              }
+            );
+          } else if (action === 'archive-del') {
+            openConfirmModal(
+              'Hapus Modul dari Arsip',
+              'Hapus permanen modul "' + arc.topik + '" dari daftar arsip lokal?',
+              function () {
+                appState.archives.splice(idx, 1);
+                saveState();
+                renderArchiveList();
+                showToast('Modul dihapus dari arsip lokal.', 'info');
+              }
+            );
+          }
+        });
+      }
+
+      /* -----------------------------------------------------------------------
+         18. JALANKAN APLIKASI SAAT HALAMAN SIAP
+         ----------------------------------------------------------------------- */
+      function bootApp() {
+        initEventListeners();
+        populateAllForms();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootApp);
+      } else {
+        bootApp();
+      }
+    })();
+  </script>
+</body>
+</html>
